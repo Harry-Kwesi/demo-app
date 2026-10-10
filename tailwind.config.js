@@ -5,9 +5,12 @@ export default {
     extend: {
       colors: {
         ink: '#0B0D0C',
-        'ink-2': '#141715',
+        'ink-2': '#1A1C1B',
         paper: '#F3F1EB',
         stone: '#EDEBE4',
+        // Neutral surfaces for the light, high-contrast layout.
+        surface: '#F5F5F2',
+        line: '#DEDDD8',
         mute: '#A5A49E',
         // Darker muted tone for small text on light backgrounds (WCAG AA).
         'mute-deep': '#5F5E58',
@@ -19,14 +22,14 @@ export default {
         sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        hero: ['clamp(56px, 8vw, 130px)', { lineHeight: '0.92', letterSpacing: '-0.045em' }],
-        display: ['clamp(44px, 6vw, 96px)', { lineHeight: '0.98', letterSpacing: '-0.04em' }],
-        headline: ['clamp(32px, 4vw, 64px)', { lineHeight: '1.04', letterSpacing: '-0.035em' }],
-        title: ['clamp(24px, 2.4vw, 38px)', { lineHeight: '1.12', letterSpacing: '-0.025em' }],
-        eyebrow: ['11px', { lineHeight: '1', letterSpacing: '0.22em' }],
+        hero: ['clamp(44px, 6.4vw, 104px)', { lineHeight: '0.98', letterSpacing: '-0.035em' }],
+        display: ['clamp(36px, 4.4vw, 68px)', { lineHeight: '1.02', letterSpacing: '-0.03em' }],
+        headline: ['clamp(28px, 3vw, 44px)', { lineHeight: '1.1', letterSpacing: '-0.025em' }],
+        title: ['clamp(20px, 1.7vw, 26px)', { lineHeight: '1.25', letterSpacing: '-0.015em' }],
+        eyebrow: ['12px', { lineHeight: '1', letterSpacing: '0.14em' }],
       },
       maxWidth: {
-        site: '1600px',
+        site: '1440px',
       },
       transitionTimingFunction: {
         quiet: 'cubic-bezier(0.22, 1, 0.36, 1)',

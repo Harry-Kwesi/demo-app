@@ -1,61 +1,45 @@
+import { Link } from 'react-router-dom';
 import Media from './Media';
-import { SplitHeading } from './Reveal';
 import Reveal from './Reveal';
-import { useParallax } from '../hooks/useParallax';
+import { company } from '../data/site';
 
 export default function Hero() {
-  const parallax = useParallax<HTMLDivElement>(0.12);
   return (
-    <section
-      data-header="dark"
-      aria-labelledby="hero-heading"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-paper"
-    >
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="false">
-        <div ref={parallax} className="absolute inset-[-8%_0] will-change-transform">
-          <div className="grain relative h-full w-full overflow-hidden">
-            <Media slot="hero" eager className="slow-zoom opacity-90" />
-          </div>
-        </div>
-        {/* Scrims keep headline contrast well above AA on any frame. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/10 to-ink" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 to-transparent" />
-      </div>
-
-      <div className="container-site relative flex flex-1 flex-col justify-end pb-16 pt-32 sm:pb-20 lg:pb-24">
-        <Reveal className="eyebrow mb-8 text-gold sm:mb-10" delay={200}>
-          Singapore Consortium Investment Management
-        </Reveal>
-        <SplitHeading
-          as="h1"
-          id="hero-heading"
-          lines={['Investing', 'beyond', 'the cycle.']}
-          delay={250}
-          stagger={120}
-          className="text-hero font-light uppercase"
-        />
-        <div className="mt-12 flex flex-col gap-10 sm:mt-16 sm:flex-row sm:items-end sm:justify-between">
-          <Reveal delay={750} className="max-w-xs text-[17px] font-light leading-[1.55] text-paper/80 sm:text-lg">
-            <p>
-              Long-term capital.
-              <br />
-              Disciplined thinking.
-              <br />
-              Enduring value.
-            </p>
+    <section aria-labelledby="hero-heading" className="bg-white">
+      <div className="container-site grid items-center gap-12 py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
+        <div className="lg:col-span-6">
+          <Reveal as="p" className="eyebrow mb-6 text-gold-deep">
+            Singapore Consortium Investment Management
           </Reveal>
-          <Reveal delay={950}>
-            <a
-              href="#who-we-are"
-              className="group hidden items-center gap-4 text-[11px] uppercase tracking-[0.24em] text-paper/70 transition-colors hover:text-paper sm:flex"
-            >
-              <span className="relative block h-12 w-px overflow-hidden bg-paper/15" aria-hidden="true">
-                <span className="scroll-cue absolute inset-0 bg-gold" />
+          <Reveal as="h1" id="hero-heading" delay={80} className="text-hero font-extrabold">
+            Investing beyond the cycle.
+          </Reveal>
+          <Reveal as="p" delay={160} className="mt-8 max-w-md text-xl leading-relaxed text-mute-deep">
+            Long-term capital. Disciplined thinking. Enduring value.
+          </Reveal>
+          <Reveal delay={240} className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link to="/funds" className="btn-primary group">
+              Explore our funds
+              <span className="arrow" aria-hidden="true">
+                →
               </span>
-              Scroll to explore
-            </a>
+            </Link>
+            <Link to="/about" className="btn-secondary">
+              About SICIM
+            </Link>
           </Reveal>
         </div>
+        <Reveal delay={120} className="relative lg:col-span-6">
+          <div className="grain relative aspect-[4/3] overflow-hidden bg-ink lg:aspect-square">
+            <Media slot="hero" eager />
+          </div>
+          <div className="relative -mt-16 ml-6 max-w-xs border-l-4 border-gold bg-white p-6 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] sm:absolute sm:-bottom-8 sm:-left-8 sm:mt-0 sm:ml-0">
+            <p className="eyebrow text-gold-deep">Licensed fund manager</p>
+            <p className="mt-3 text-[15px] font-semibold leading-snug">
+              {company.licence}, {company.regulator}.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

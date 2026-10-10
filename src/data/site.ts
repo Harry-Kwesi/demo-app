@@ -37,6 +37,72 @@ export const nav = [
   { label: 'Contact', to: '/contact' },
 ];
 
+export type MenuGroup = {
+  label: string;
+  to: string;
+  blurb: string;
+  links: { label: string; to: string; description: string }[];
+};
+
+/** Primary navigation with dropdown panels. */
+export const menu: MenuGroup[] = [
+  {
+    label: 'About us',
+    to: '/about',
+    blurb: 'A Singapore fund manager, incorporated in 1996 and licensed by the Monetary Authority of Singapore.',
+    links: [
+      { label: 'Overview', to: '/about', description: 'Who we are and who we serve' },
+      { label: 'Corporate information', to: '/about#corporate', description: 'Licence, registration and office' },
+      { label: 'Leadership', to: '/team', description: 'The people behind SICIM' },
+    ],
+  },
+  {
+    label: 'Investments',
+    to: '/funds',
+    blurb: 'Diversified global portfolios across equities, fixed income and alternatives.',
+    links: [
+      { label: 'Investment philosophy', to: '/philosophy', description: 'How we think about risk and return' },
+      { label: 'Asset classes', to: '/funds#asset-classes', description: 'What we invest in' },
+      { label: 'Funds we manage', to: '/funds#funds', description: 'SGX-listed funds managed by SICIM' },
+    ],
+  },
+  {
+    label: 'Insights',
+    to: '/insights',
+    blurb: 'Commentary, fund announcements and reports.',
+    links: [
+      { label: 'All insights', to: '/insights', description: 'Latest perspectives and announcements' },
+    ],
+  },
+];
+
+/** Audience selector in the utility bar — SICIM's published client types. */
+export const audiences = [
+  {
+    key: 'individual',
+    label: 'Individual investors',
+    headline: 'Access to diversified, professionally managed portfolios.',
+    body: 'SICIM manages funds listed on the Singapore Exchange, giving individual investors access to a diversified global portfolio or a low-cost indexing approach.',
+    cta: { label: 'Explore our funds', to: '/funds#funds' },
+  },
+  {
+    key: 'institutional',
+    label: 'Institutional clients',
+    headline: 'Integrated investment management and advisory services.',
+    body: 'We work with institutional clients across diversified asset classes — equities, fixed income and alternative investments — guided by fundamental analysis.',
+    cta: { label: 'Talk to our team', to: '/contact' },
+  },
+  {
+    key: 'funds',
+    label: 'Mutual funds',
+    headline: 'A licensed fund manager for collective investment schemes.',
+    body: 'As holder of a Capital Markets Services Licence for Fund Management, SICIM acts as manager to mutual funds, including SGX-listed Global Investments Limited.',
+    cta: { label: 'About SICIM', to: '/about' },
+  },
+] as const;
+
+export type AudienceKey = (typeof audiences)[number]['key'];
+
 export const about = {
   summary:
     'Incorporated in Singapore in 1996, SICIM provides integrated investment management and advisory services across diversified asset classes — equities, fixed income and alternative investments — for individual investors, institutional clients and mutual funds.',
@@ -266,3 +332,18 @@ export const media: Record<string, { src?: string; alt: string; art: ArtVariant 
   philosophy: { alt: 'A colonnade receding into darkness', art: 'colonnade' },
   funds: { alt: 'Suspension bridge cables against a dark sky', art: 'bridge' },
 };
+
+/** Pages and sections offered by the header search. */
+export const searchIndex = [
+  { title: 'About SICIM', to: '/about', text: 'overview company singapore 1996 fund manager licence MAS clients' },
+  { title: 'Corporate information', to: '/about#corporate', text: 'registration licence regulator monetary authority office address' },
+  { title: 'Investment philosophy', to: '/philosophy', text: 'philosophy diversification total return macroeconomic cycle fundamental analysis' },
+  { title: 'Our approach', to: '/philosophy#approach', text: 'identify invest build grow process' },
+  { title: 'Asset classes', to: '/funds#asset-classes', text: 'equities fixed income alternatives derivatives loans structured finance' },
+  { title: 'Global Investments Limited', to: '/funds#global-investments-limited', text: 'fund mutual SGX listed' },
+  { title: 'Singapore Index Fund', to: '/funds#singapore-index-fund', text: 'index passive fund SGX' },
+  { title: 'Leadership', to: '/team', text: 'team chairman chief executive directors' },
+  { title: 'Insights', to: '/insights', text: 'commentary announcements reports news' },
+  { title: 'Contact us', to: '/contact', text: 'contact phone email address enquiry' },
+  { title: 'Privacy, legal & disclosures', to: '/legal', text: 'privacy legal disclosures terms' },
+];

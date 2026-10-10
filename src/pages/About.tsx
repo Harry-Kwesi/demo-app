@@ -1,104 +1,84 @@
-import PageHero from '../components/PageHero';
-import Reveal, { SplitHeading } from '../components/Reveal';
-import Media from '../components/Media';
+import PageHeader from '../components/PageHeader';
+import Reveal from '../components/Reveal';
+import SectionHeading from '../components/SectionHeading';
 import Metrics from '../components/Metrics';
+import Team from '../components/Team';
 import ContactCTA from '../components/ContactCTA';
-import ArrowLink from '../components/ArrowLink';
 import Pending from '../components/Pending';
-import { about, company, funds } from '../data/site';
+import { about, audiences, company } from '../data/site';
 import { useTitle } from '../hooks/useTitle';
 
 export default function About() {
-  useTitle('About');
+  useTitle('About us');
   const facts: [string, string][] = [
     ['Legal name', company.legalName],
     ['Incorporated', `Singapore, ${company.established}`],
-    ['Company registration', company.registration],
+    ['Company registration no.', company.registration],
     ['Licence', company.licence],
     ['Regulator', company.regulator],
   ];
   return (
     <>
-      <PageHero
-        eyebrow="About SICIM"
-        lines={['A Singapore', 'fund manager', <span className="text-mute">since 1996.</span>]}
+      <PageHeader
+        crumb="About us"
+        title="A Singapore fund manager since 1996."
         intro={about.summary}
         art="facade"
         seed={3}
+        sections={[
+          { label: 'Who we serve', href: '#clients' },
+          { label: 'Corporate information', href: '#corporate' },
+          { label: 'Leadership', href: '#leadership' },
+        ]}
       />
 
-      <section data-header="light" aria-labelledby="mandate-heading" className="bg-stone py-28 text-ink sm:py-36 lg:py-48">
-        <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="eyebrow flex items-center gap-4 self-start lg:pt-4 text-gold-deep lg:col-span-3">
-            <span className="h-px w-10 bg-current" aria-hidden="true" />
-            Our mandate
-          </Reveal>
-          <div className="lg:col-span-9">
-            <SplitHeading id="mandate-heading" className="text-headline font-light" lines={[about.mandate]} />
-            <div className="mt-20 grid gap-14 border-t border-ink/10 pt-12 md:grid-cols-2">
-              <Reveal>
-                <h3 className="eyebrow mb-6 text-mute-deep">Who we serve</h3>
-                <ul className="divide-y divide-ink/10 border-y border-ink/10">
-                  {about.clients.map((c) => (
-                    <li key={c} className="py-5 text-title font-light">
-                      {c}
-                    </li>
-                  ))}
-                </ul>
+      <section id="clients" aria-labelledby="clients-heading" className="bg-white py-20 lg:py-28">
+        <div className="container-site">
+          <SectionHeading id="clients-heading" eyebrow="Who we serve" title={about.mandate} />
+          <ul className="grid gap-6 md:grid-cols-3">
+            {audiences.map((a, i) => (
+              <Reveal as="li" key={a.key} delay={i * 80} className="border-t-4 border-ink bg-surface p-8">
+                <h3 className="text-title font-extrabold">{a.label}</h3>
+                <p className="mt-4 text-[15px] leading-relaxed text-mute-deep">{a.body}</p>
               </Reveal>
-              <Reveal delay={120}>
-                <h3 className="eyebrow mb-6 text-mute-deep">Funds under management</h3>
-                <ul className="divide-y divide-ink/10 border-y border-ink/10">
-                  {funds.map((f) => (
-                    <li key={f.slug} className="py-5">
-                      <p className="text-title font-light">{f.name}</p>
-                      <p className="mt-2 text-[14px] text-mute-deep">{f.listing}</p>
-                    </li>
-                  ))}
-                </ul>
-                <ArrowLink to="/funds" tone="dark" className="mt-10">
-                  Funds & investments
-                </ArrowLink>
-              </Reveal>
-            </div>
-          </div>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section data-header="dark" aria-labelledby="facts-heading" className="bg-ink py-28 text-paper sm:py-36">
-        <div className="container-site grid gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <Reveal as="h2" id="facts-heading" className="eyebrow mb-10 flex items-center gap-4 text-gold">
-              <span className="h-px w-10 bg-current" aria-hidden="true" />
-              Corporate information
-            </Reveal>
-            <Reveal variant="mask" className="grain relative aspect-[4/5] overflow-hidden">
-              <Media slot="about" variant="atrium" seed={9} />
-            </Reveal>
+      <section id="corporate" aria-labelledby="corporate-heading" className="bg-surface py-20 lg:py-28">
+        <div className="container-site grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <SectionHeading id="corporate-heading" eyebrow="Corporate information" title="Regulated in Singapore." />
           </div>
-          <dl className="self-end border-t border-paper/10 lg:col-span-6 lg:col-start-7">
-            {facts.map(([k, v], i) => (
-              <Reveal key={k} delay={i * 80} className="grid gap-2 border-b border-paper/10 py-7 sm:grid-cols-[12rem_1fr] sm:gap-8">
-                <dt className="eyebrow pt-1.5 text-mute">{k}</dt>
-                <dd className="text-[19px] font-light">{v}</dd>
-              </Reveal>
-            ))}
-            <Reveal className="grid gap-2 border-b border-paper/10 py-7 sm:grid-cols-[12rem_1fr] sm:gap-8">
-              <dt className="eyebrow pt-1.5 text-mute">Office</dt>
-              <dd className="text-[19px] font-light">
-                {company.address.lines.join(', ')}
-                {!company.address.verified && (
-                  <span className="mt-4 block">
-                    <Pending label="Confirm current address" />
-                  </span>
-                )}
-              </dd>
-            </Reveal>
-          </dl>
+          <Reveal className="lg:col-span-8">
+            <dl className="border-t-2 border-ink bg-white">
+              {facts.map(([k, v]) => (
+                <div key={k} className="grid gap-1 border-b border-line px-6 py-5 sm:grid-cols-[14rem_1fr] sm:gap-6">
+                  <dt className="text-[14px] font-bold text-mute-deep">{k}</dt>
+                  <dd className="text-[17px] font-semibold">{v}</dd>
+                </div>
+              ))}
+              <div className="grid gap-1 px-6 py-5 sm:grid-cols-[14rem_1fr] sm:gap-6">
+                <dt className="text-[14px] font-bold text-mute-deep">Office</dt>
+                <dd className="text-[17px] font-semibold">
+                  {company.address.lines.join(', ')}
+                  {!company.address.verified && (
+                    <span className="mt-3 block">
+                      <Pending label="Confirm current address" />
+                    </span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </Reveal>
         </div>
       </section>
 
       <Metrics />
+      <div id="leadership">
+        <Team />
+      </div>
       <ContactCTA />
     </>
   );

@@ -11,6 +11,7 @@ import InsightsPage from './pages/InsightsPage';
 import Contact from './pages/Contact';
 import Legal from './pages/Legal';
 import NotFound from './pages/NotFound';
+import { AudienceProvider } from './hooks/useAudience';
 
 /** Scroll to top on navigation, or to the hash target when one is given. */
 function ScrollManager() {
@@ -56,13 +57,15 @@ function Pages() {
 export default function App() {
   return (
     <BrowserRouter>
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-      <ScrollManager />
-      <Header />
-      <Pages />
-      <Footer />
+      <AudienceProvider>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <ScrollManager />
+        <Header />
+        <Pages />
+        <Footer />
+      </AudienceProvider>
     </BrowserRouter>
   );
 }

@@ -5,16 +5,18 @@ type Props = {
   to: string;
   children: ReactNode;
   className?: string;
-  tone?: 'light' | 'dark';
+  tone?: 'dark' | 'light';
 };
 
-/** Uppercase text link with an arrow that nudges forward on hover/focus. */
-export default function ArrowLink({ to, children, className = '', tone = 'light' }: Props) {
-  const color = tone === 'light' ? 'text-paper' : 'text-ink';
+/** Bold text link with an arrow that nudges forward on hover/focus. */
+export default function ArrowLink({ to, children, className = '', tone = 'dark' }: Props) {
   return (
-    <Link to={to} className={`group inline-flex items-center gap-3 ${color} eyebrow ${className}`}>
-      <span className="link-line pb-1">{children}</span>
-      <span className="arrow text-gold" aria-hidden="true">
+    <Link
+      to={to}
+      className={`group inline-flex items-center gap-2 text-[15px] font-bold ${tone === 'dark' ? 'text-ink' : 'text-white'} ${className}`}
+    >
+      <span className="u-link pb-0.5">{children}</span>
+      <span className="arrow" aria-hidden="true">
         →
       </span>
     </Link>

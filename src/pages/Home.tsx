@@ -1,8 +1,10 @@
 import Hero from '../components/Hero';
-import SectionIntro from '../components/SectionIntro';
+import AudienceBand from '../components/AudienceBand';
+import FeatureTiles from '../components/FeatureTiles';
 import Philosophy from '../components/Philosophy';
 import Approach from '../components/Approach';
 import Investments from '../components/Investments';
+import FundTable from '../components/FundTable';
 import Metrics from '../components/Metrics';
 import Team from '../components/Team';
 import Insights from '../components/Insights';
@@ -14,10 +16,12 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <SectionIntro />
+      <AudienceBand />
+      <FeatureTiles />
       <Philosophy />
       <Approach />
       <Investments />
+      <FundTable />
       <Metrics />
       <Team />
       <Insights />

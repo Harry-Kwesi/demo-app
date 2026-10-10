@@ -1,28 +1,42 @@
 import { Link } from 'react-router-dom';
+import Art from './Art';
 import Pending from './Pending';
-import Reveal, { SplitHeading } from './Reveal';
+import Reveal from './Reveal';
+import SectionHeading from './SectionHeading';
 import ArrowLink from './ArrowLink';
 import { insights } from '../data/site';
+import type { ArtVariant } from '../data/site';
 
-/** Publication-style rows: category · date · title · arrow. */
-export function InsightRows({ limit }: { limit?: number }) {
-  const items = limit ? insights.slice(0, limit) : insights;
+const covers: ArtVariant[] = ['horizon', 'facade', 'skyline', 'bridge'];
+
+/** Article cards: image, category, date, title. */
+export function InsightCards({ limit, category }: { limit?: number; category?: string }) {
+  const filtered = category ? insights.filter((i) => i.category === category) : insights;
+  const items = limit ? filtered.slice(0, limit) : filtered;
   return (
-    <ul className="border-t border-paper/15">
+    <ul className={`grid gap-8 md:grid-cols-2 ${limit === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
       {items.map((item, i) => (
-        <Reveal as="li" key={item.slug} delay={i * 80} className="border-b border-paper/15">
-          <Link
-            to={`/insights#${item.slug}`}
-            className="group grid gap-3 py-9 transition-colors duration-500 md:grid-cols-[12rem_9rem_1fr_auto] md:items-baseline md:gap-8 lg:py-12"
-          >
-            <span className="eyebrow text-gold">{item.category}</span>
-            <span className="text-[13px] tracking-[0.06em] text-mute">{item.date}</span>
-            <span className="text-title font-light text-paper/80 transition-[color,transform] duration-700 ease-quiet group-hover:translate-x-2 group-hover:text-paper">
-              {item.title}
-            </span>
-            <span className="arrow hidden text-3xl font-light text-gold md:block" aria-hidden="true">
-              →
-            </span>
+        <Reveal as="li" key={item.slug} id={item.slug} delay={i * 80} className="scroll-mt-28">
+          <Link to={`/insights#${item.slug}`} className="group flex h-full flex-col">
+            <div className="zoom grain relative aspect-[16/10] overflow-hidden bg-ink">
+              <Art variant={covers[i % covers.length]} seed={i + 60} />
+            </div>
+            <div className="flex flex-1 flex-col pt-5">
+              <p className="flex items-center gap-3 text-[13px] font-bold">
+                <span className="text-gold-deep">{item.category}</span>
+                <span className="h-3 w-px bg-line" aria-hidden="true" />
+                <span className="text-mute-deep">{item.date}</span>
+              </p>
+              <h3 className="mt-3 flex-1 text-title font-extrabold">
+                <span className="u-link">{item.title}</span>
+              </h3>
+              <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-bold">
+                Read more
+                <span className="arrow" aria-hidden="true">
+                  →
+                </span>
+              </span>
+            </div>
           </Link>
         </Reveal>
       ))}
@@ -32,22 +46,11 @@ export function InsightRows({ limit }: { limit?: number }) {
 
 export default function Insights() {
   return (
-    <section data-header="dark" aria-labelledby="insights-heading" className="bg-ink py-28 text-paper sm:py-36 lg:py-48">
+    <section aria-labelledby="insights-heading" className="bg-surface py-20 lg:py-28">
       <div className="container-site">
-        <div className="mb-16 flex flex-col justify-between gap-10 lg:mb-24 lg:flex-row lg:items-end">
-          <div>
-            <Reveal className="eyebrow mb-10 flex items-center gap-4 text-gold">
-              <span className="h-px w-10 bg-current" aria-hidden="true" />
-              Insights
-            </Reveal>
-            <SplitHeading id="insights-heading" className="text-display font-light" lines={['Perspectives', <span className="text-mute">& announcements.</span>]} />
-          </div>
-          <Reveal className="flex flex-col items-start gap-6 lg:items-end">
-            <Pending label="Sample rows — replace with published articles" />
-            <ArrowLink to="/insights">All insights</ArrowLink>
-          </Reveal>
-        </div>
-        <InsightRows limit={3} />
+        <SectionHeading id="insights-heading" eyebrow="Insights" title="Latest perspectives." action={<ArrowLink to="/insights">All insights</ArrowLink>} />
+        <Pending className="mb-8" label="Sample cards — replace with published articles" />
+        <InsightCards limit={3} />
       </div>
     </section>
   );

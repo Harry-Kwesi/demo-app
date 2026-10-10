@@ -1,60 +1,72 @@
 import { Link } from 'react-router-dom';
-import { company, nav } from '../data/site';
+import { company, menu } from '../data/site';
 import Pending from './Pending';
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer data-header="dark" className="border-t border-paper/10 bg-ink text-paper">
-      <div className="container-site pb-10 pt-20 lg:pt-28">
-        <div className="grid gap-14 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <Link to="/" className="text-[clamp(56px,9vw,148px)] font-light leading-none tracking-[-0.05em]">
+    <footer className="on-dark bg-ink text-white">
+      <div className="container-site py-16 lg:py-20">
+        <div className="grid gap-12 border-b border-white/15 pb-14 md:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Link to="/" className="text-[28px] font-extrabold tracking-[0.18em]">
               SICIM
             </Link>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-mute">
-              {company.legalName}. Holder of a {company.licence} issued by the {company.regulator}.
-            </p>
+            <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-mute">{company.legalName}</p>
+            <Link to="/contact" className="btn-light mt-8">
+              Contact us
+            </Link>
           </div>
 
-          <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">
-            <h2 className="eyebrow mb-6 text-mute">Navigation</h2>
-            <ul className="space-y-3 text-[15px]">
-              {nav.map((item) => (
-                <li key={item.to}>
-                  <Link to={item.to} className="link-line pb-0.5">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {menu.map((group) => (
+            <nav key={group.label} aria-label={group.label} className="lg:col-span-2">
+              <h2 className="mb-5 text-[15px] font-extrabold">{group.label}</h2>
+              <ul className="space-y-3 text-[14px] text-white/75">
+                {group.links.map((l) => (
+                  <li key={l.to}>
+                    <Link to={l.to} className="hover:text-white hover:underline">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
 
-          <div className="md:col-span-3">
-            <h2 className="eyebrow mb-6 text-mute">Office</h2>
-            <address className="text-[15px] not-italic leading-relaxed">
+          <div className="lg:col-span-2">
+            <h2 className="mb-5 text-[15px] font-extrabold">Office</h2>
+            <address className="text-[14px] not-italic leading-relaxed text-white/75">
               {company.address.lines.map((l) => (
                 <span key={l} className="block">
                   {l}
                 </span>
               ))}
-              <a href={company.phone.href} className="link-line mt-4 inline-block pb-0.5">
+              <a href={company.phone.href} className="mt-3 inline-block hover:text-white hover:underline">
                 {company.phone.display}
               </a>
             </address>
-            {!company.address.verified && <Pending className="mt-5" label="Confirm current address" />}
+            {!company.address.verified && <Pending className="mt-4" label="Confirm address" />}
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col gap-6 border-t border-paper/10 pt-8 text-[12px] text-mute md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 max-w-5xl space-y-4 text-[12px] leading-relaxed text-mute">
           <p>
-            © {year} {company.legalName}. Co. Reg. No. {company.registration}.
+            {company.legalName} (Co. Reg. No. {company.registration}) holds a {company.licence} issued by the {company.regulator}.
           </p>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2">
-            {/* Legal copy to be supplied by SICIM compliance. */}
+          <p>
+            The information on this website is for general information only and does not constitute an offer or solicitation to buy or sell any investment product. The value of investments and any
+            income from them can fall as well as rise. Past performance is not indicative of future performance.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-6 border-t border-white/15 pt-8 text-[13px] text-mute md:flex-row md:items-center md:justify-between">
+          <p>
+            © {year} {company.legalName}. All rights reserved.
+          </p>
+          <ul className="flex flex-wrap gap-x-8 gap-y-2 font-semibold">
             {['Privacy', 'Legal', 'Disclosures'].map((label) => (
               <li key={label}>
-                <Link to={`/legal#${label.toLowerCase()}`} className="link-line pb-0.5 hover:text-paper">
+                <Link to={`/legal#${label.toLowerCase()}`} className="hover:text-white hover:underline">
                   {label}
                 </Link>
               </li>

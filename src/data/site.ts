@@ -79,11 +79,17 @@ export const home = {
 };
 
 export const about = {
-  summary:
-    'Incorporated in Singapore in 1996, SICIM provides integrated investment management and advisory services across diversified asset classes — equities, fixed income and alternative investments — for individual investors, institutional clients and mutual funds.',
+  /** About Us page, verbatim from sicim.com.sg. */
+  title: 'About Us',
+  body: 'Singapore Consortium Investment Management Limited (“SICIM”) was incorporated in Singapore in 1996 and holds a Capital Market Services Licence for Fund Management issued by the Monetary Authority of Singapore in 1996. SICIM offers integrated investment management and advisory services to investors over a broad range of diversified asset classes that include public and private equities, fixed income instruments, loans, derivatives, structured finance and alternative investments.',
+  /** Restates facts from the paragraph above for the page's key-facts strip. */
+  facts: [
+    { label: 'Incorporated', value: '1996', detail: 'Incorporated in Singapore' },
+    { label: 'Licensed', value: '1996', detail: 'Capital Market Services Licence for Fund Management issued by the Monetary Authority of Singapore' },
+  ],
+  assetClasses: ['Public and private equities', 'Fixed income instruments', 'Loans', 'Derivatives', 'Structured finance', 'Alternative investments'],
   mandate:
     'SICIM aims to deliver a consistent total return to investors through active portfolio management and asset growth.',
-  clients: ['Individual investors', 'Institutional clients', 'Mutual funds'],
 };
 
 export type Principle = {

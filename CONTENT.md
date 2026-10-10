@@ -5,6 +5,17 @@ the facts below come from public sources that index or reproduce SICIM's site. I
 appear on the site with a dashed "placeholder" tag. To turn those tags off once everything is confirmed, set
 `SHOW_CONTENT_FLAGS = false`.
 
+## Copied from sicim.com.sg (screenshots supplied by the client)
+
+| Page | Status |
+| --- | --- |
+| Home: "Our Philosophy" hero and "Latest News" notice | Copied verbatim |
+| About Us: single paragraph (incorporated 1996; licence issued by MAS in 1996; asset classes) | Copied verbatim |
+| The Team, Investment Philosophy, Funds, Contact Us | Pending screenshots |
+
+Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
+The About Us copy keeps the site's wording.
+
 ## Verified (public sources)
 
 | Fact | Source |

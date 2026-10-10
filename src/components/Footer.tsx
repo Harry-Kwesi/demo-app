@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { company, menu } from '../data/site';
+import { company, nav } from '../data/site';
 import Pending from './Pending';
 
 export default function Footer() {
@@ -18,22 +18,20 @@ export default function Footer() {
             </Link>
           </div>
 
-          {menu.map((group) => (
-            <nav key={group.label} aria-label={group.label} className="lg:col-span-2">
-              <h2 className="mb-5 text-[15px] font-extrabold">{group.label}</h2>
-              <ul className="space-y-3 text-[14px] text-white/75">
-                {group.links.map((l) => (
-                  <li key={l.to}>
-                    <Link to={l.to} className="hover:text-white hover:underline">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+          <nav aria-label="Footer" className="lg:col-span-3 lg:col-start-6">
+            <h2 className="mb-5 text-[15px] font-extrabold">Navigation</h2>
+            <ul className="space-y-3 text-[14px] text-white/75">
+              {nav.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className="hover:text-white hover:underline">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <h2 className="mb-5 text-[15px] font-extrabold">Office</h2>
             <address className="text-[14px] not-italic leading-relaxed text-white/75">
               {company.address.lines.map((l) => (

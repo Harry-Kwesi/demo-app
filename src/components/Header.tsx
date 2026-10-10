@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { audiences, company, menu, searchIndex } from '../data/site';
+import { audiences, company, nav, searchIndex } from '../data/site';
 import { useAudience } from '../hooks/useAudience';
 
 /** Thin black bar above the header: audience selector, region and phone. */
@@ -135,17 +135,16 @@ function SearchIcon({ className = '' }: { className?: string }) {
 }
 
 /**
- * Sticky white header with dropdown panels (hover or click), site search and a
- * full-screen drawer on small screens.
+ * Sticky white header with flat navigation, site search and a full-screen
+ * drawer on small screens. "Contact Us" is styled as the primary button.
  */
 export default function Header() {
-  const [openMenu, setOpenMenu] = useState<number | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawer, setDrawer] = useState(false);
-  const [drawerGroup, setDrawerGroup] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const headerRef = useRef<HTMLElement>(null);
+  const links = nav.filter((n) => n.to !== '/contact');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 44);
@@ -154,28 +153,23 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close everything on navigation.
+  // Close panels on navigation.
   useEffect(() => {
-    setOpenMenu(null);
     setSearchOpen(false);
     setDrawer(false);
   }, [location.pathname, location.hash]);
 
   // Escape and outside-click close panels.
   useEffect(() => {
-    if (openMenu === null && !searchOpen && !drawer) return;
+    if (!searchOpen && !drawer) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setOpenMenu(null);
         setSearchOpen(false);
         setDrawer(false);
       }
     };
     const onClick = (e: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setOpenMenu(null);
-        setSearchOpen(false);
-      }
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) setSearchOpen(false);
     };
     document.addEventListener('keydown', onKey);
     document.addEventListener('mousedown', onClick);
@@ -183,7 +177,7 @@ export default function Header() {
       document.removeEventListener('keydown', onKey);
       document.removeEventListener('mousedown', onClick);
     };
-  }, [openMenu, searchOpen, drawer]);
+  }, [searchOpen, drawer]);
 
   useEffect(() => {
     if (!drawer) return;
@@ -194,18 +188,14 @@ export default function Header() {
     };
   }, [drawer]);
 
-  const isSection = (to: string, i: number) =>
-    location.pathname === to || menu[i].links.some((l) => location.pathname === l.to.split('#')[0]);
-
   return (
     <>
       <UtilityBar />
       <header
         ref={headerRef}
-        className={`sticky top-0 z-50 border-b bg-white transition-shadow duration-300 ${
-          scrolled ? 'border-line shadow-[0_8px_24px_-16px_rgba(0,0,0,0.2)]' : 'border-line'
+        className={`sticky top-0 z-50 border-b border-line bg-white transition-shadow duration-300 ${
+          scrolled ? 'shadow-[0_8px_24px_-16px_rgba(0,0,0,0.2)]' : ''
         }`}
-        onMouseLeave={() => setOpenMenu(null)}
       >
         <div className="container-site flex h-[72px] items-center justify-between gap-8 lg:h-20">
           <Link to="/" className="text-[22px] font-extrabold tracking-[0.18em]" aria-label="SICIM — home">
@@ -214,28 +204,26 @@ export default function Header() {
 
           <nav aria-label="Primary" className="hidden h-full flex-1 lg:block">
             <ul className="flex h-full items-center gap-1">
-              {menu.map((group, i) => (
-                <li key={group.label} className="h-full" onMouseEnter={() => (setSearchOpen(false), setOpenMenu(i))}>
-                  <button
-                    type="button"
-                    aria-expanded={openMenu === i}
-                    aria-controls={`menu-panel-${i}`}
-                    onClick={() => setOpenMenu(openMenu === i ? null : i)}
-                    className={`relative flex h-full items-center gap-2 px-4 text-[15px] font-bold ${
-                      isSection(group.to, i) ? 'text-ink' : 'text-ink/80 hover:text-ink'
-                    }`}
+              {links.map((item) => (
+                <li key={item.to} className="h-full">
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `group relative flex h-full items-center px-4 text-[15px] font-bold ${isActive ? 'text-ink' : 'text-ink/75 hover:text-ink'}`
+                    }
                   >
-                    {group.label}
-                    <svg viewBox="0 0 12 12" className={`h-3 w-3 transition-transform ${openMenu === i ? 'rotate-180' : ''}`} aria-hidden="true">
-                      <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.8" />
-                    </svg>
-                    <span
-                      aria-hidden="true"
-                      className={`absolute inset-x-4 bottom-0 h-[3px] bg-ink transition-transform duration-300 ${
-                        openMenu === i || isSection(group.to, i) ? 'scale-x-100' : 'scale-x-0'
-                      }`}
-                    />
-                  </button>
+                    {({ isActive }) => (
+                      <>
+                        {item.label}
+                        <span
+                          aria-hidden="true"
+                          className={`absolute inset-x-4 bottom-0 h-[3px] bg-ink transition-transform duration-300 ${
+                            isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          }`}
+                        />
+                      </>
+                    )}
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -246,13 +234,13 @@ export default function Header() {
               type="button"
               aria-expanded={searchOpen}
               aria-label={searchOpen ? 'Close search' : 'Search'}
-              onClick={() => (setOpenMenu(null), setSearchOpen((v) => !v))}
+              onClick={() => setSearchOpen((v) => !v)}
               className="flex h-11 w-11 items-center justify-center hover:bg-surface"
             >
               {searchOpen ? <span className="text-2xl leading-none">×</span> : <SearchIcon className="h-5 w-5" />}
             </button>
             <Link to="/contact" className="btn-primary hidden px-6 py-3 sm:inline-flex">
-              Contact us
+              Contact Us
             </Link>
             <button
               type="button"
@@ -268,41 +256,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {openMenu !== null && (
-          <div
-            id={`menu-panel-${openMenu}`}
-            className="panel-in absolute inset-x-0 top-full hidden border-b border-line bg-white shadow-[0_24px_48px_-24px_rgba(0,0,0,0.25)] lg:block"
-          >
-            <div className="container-site grid grid-cols-12 gap-10 py-12">
-              <div className="col-span-4 border-r border-line pr-10">
-                <p className="text-headline font-extrabold">{menu[openMenu].label}</p>
-                <p className="mt-4 text-[15px] leading-relaxed text-mute-deep">{menu[openMenu].blurb}</p>
-                <Link to={menu[openMenu].to} className="group mt-8 inline-flex items-center gap-2 font-bold">
-                  <span className="u-link">Explore {menu[openMenu].label.toLowerCase()}</span>
-                  <span className="arrow" aria-hidden="true">
-                    →
-                  </span>
-                </Link>
-              </div>
-              <ul className="col-span-8 grid grid-cols-2 gap-x-10 gap-y-2 self-start">
-                {menu[openMenu].links.map((l) => (
-                  <li key={l.to}>
-                    <Link to={l.to} className="group block border-b border-line py-5">
-                      <span className="flex items-center justify-between text-[17px] font-bold">
-                        <span className="u-link">{l.label}</span>
-                        <span className="arrow" aria-hidden="true">
-                          →
-                        </span>
-                      </span>
-                      <span className="mt-1 block text-[14px] text-mute-deep">{l.description}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
 
         {searchOpen && <SearchPanel onClose={() => setSearchOpen(false)} />}
       </header>
@@ -323,43 +276,24 @@ export default function Header() {
           </div>
           <nav aria-label="Mobile" className="container-site flex-1 overflow-y-auto py-4">
             <ul>
-              {menu.map((group, i) => (
-                <li key={group.label} className="border-b border-line">
-                  <button
-                    type="button"
-                    aria-expanded={drawerGroup === i}
-                    onClick={() => setDrawerGroup(drawerGroup === i ? null : i)}
-                    className="flex w-full items-center justify-between py-5 text-left text-xl font-extrabold"
+              {[{ label: 'Home', to: '/' }, ...nav].map((item) => (
+                <li key={item.to} className="border-b border-line">
+                  <NavLink
+                    to={item.to}
+                    end
+                    className={({ isActive }) => `flex items-center justify-between py-5 text-xl font-extrabold ${isActive ? 'text-gold-deep' : ''}`}
                   >
-                    {group.label}
-                    <span aria-hidden="true" className="text-2xl font-normal">
-                      {drawerGroup === i ? '−' : '+'}
-                    </span>
-                  </button>
-                  {drawerGroup === i && (
-                    <ul className="pb-4">
-                      {group.links.map((l) => (
-                        <li key={l.to}>
-                          <NavLink to={l.to} className="block py-3 pl-4 text-[16px] font-semibold text-mute-deep">
-                            {l.label}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                    {item.label}
+                    <span aria-hidden="true">→</span>
+                  </NavLink>
                 </li>
               ))}
-              <li className="border-b border-line">
-                <NavLink to="/contact" className="block py-5 text-xl font-extrabold">
-                  Contact us
-                </NavLink>
-              </li>
             </ul>
           </nav>
           <div className="container-site shrink-0 border-t border-line py-6">
-            <Link to="/contact" className="btn-primary w-full">
-              Contact us
-            </Link>
+            <a href={company.phone.href} className="btn-secondary w-full">
+              Call {company.phone.display}
+            </a>
           </div>
         </div>
       )}

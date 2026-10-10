@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -47,6 +47,10 @@ function Pages() {
           <Route path="/insights" element={<InsightsPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />
+          {/* Paths used by the current sicim.com.sg, kept working for existing links. */}
+          <Route path="/about-us" element={<Navigate to="/about" replace />} />
+          <Route path="/the-team" element={<Navigate to="/team" replace />} />
+          <Route path="/investment-strategy" element={<Navigate to="/philosophy" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

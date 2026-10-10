@@ -28,52 +28,13 @@ export const company = {
   email: { display: 'enquiries@[to-be-confirmed]', href: '', verified: false },
 };
 
+/** Primary navigation — mirrors the sections of sicim.com.sg. */
 export const nav = [
-  { label: 'About', to: '/about' },
-  { label: 'Philosophy', to: '/philosophy' },
+  { label: 'About Us', to: '/about' },
+  { label: 'The Team', to: '/team' },
+  { label: 'Investment Philosophy', to: '/philosophy' },
   { label: 'Funds', to: '/funds' },
-  { label: 'Team', to: '/team' },
-  { label: 'Insights', to: '/insights' },
-  { label: 'Contact', to: '/contact' },
-];
-
-export type MenuGroup = {
-  label: string;
-  to: string;
-  blurb: string;
-  links: { label: string; to: string; description: string }[];
-};
-
-/** Primary navigation with dropdown panels. */
-export const menu: MenuGroup[] = [
-  {
-    label: 'About us',
-    to: '/about',
-    blurb: 'A Singapore fund manager, incorporated in 1996 and licensed by the Monetary Authority of Singapore.',
-    links: [
-      { label: 'Overview', to: '/about', description: 'Who we are and who we serve' },
-      { label: 'Corporate information', to: '/about#corporate', description: 'Licence, registration and office' },
-      { label: 'Leadership', to: '/team', description: 'The people behind SICIM' },
-    ],
-  },
-  {
-    label: 'Investments',
-    to: '/funds',
-    blurb: 'Diversified global portfolios across equities, fixed income and alternatives.',
-    links: [
-      { label: 'Investment philosophy', to: '/philosophy', description: 'How we think about risk and return' },
-      { label: 'Asset classes', to: '/funds#asset-classes', description: 'What we invest in' },
-      { label: 'Funds we manage', to: '/funds#funds', description: 'SGX-listed funds managed by SICIM' },
-    ],
-  },
-  {
-    label: 'Insights',
-    to: '/insights',
-    blurb: 'Commentary, fund announcements and reports.',
-    links: [
-      { label: 'All insights', to: '/insights', description: 'Latest perspectives and announcements' },
-    ],
-  },
+  { label: 'Contact Us', to: '/contact' },
 ];
 
 /** Audience selector in the utility bar — SICIM's published client types. */

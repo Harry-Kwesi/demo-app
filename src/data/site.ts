@@ -64,6 +64,20 @@ export const audiences = [
 
 export type AudienceKey = (typeof audiences)[number]['key'];
 
+/** Homepage copy, verbatim from sicim.com.sg (home page). */
+export const home = {
+  siteTitle: 'Singapore Consortium Investment Management Limited',
+  hero: {
+    title: 'Our Philosophy',
+    body: 'We aim to deliver a consistent total return to investors through active portfolio management and assets growth.',
+    cta: { label: 'Learn More', to: '/philosophy' },
+  },
+  latestNews: {
+    title: 'Latest News',
+    body: 'Please read the terms and conditions, disclaimer and privacy carefully before using this website. By using this website, you confirm that you have read and accept them. If you do not agree to them, do not access or use this website.',
+  },
+};
+
 export const about = {
   summary:
     'Incorporated in Singapore in 1996, SICIM provides integrated investment management and advisory services across diversified asset classes — equities, fixed income and alternative investments — for individual investors, institutional clients and mutual funds.',

@@ -7,7 +7,7 @@ import Investments from '../components/Investments';
 import FundTable from '../components/FundTable';
 import Metrics from '../components/Metrics';
 import Team from '../components/Team';
-import Insights from '../components/Insights';
+import LatestNews from '../components/LatestNews';
 import ContactCTA from '../components/ContactCTA';
 import { useTitle } from '../hooks/useTitle';
 
@@ -24,7 +24,7 @@ export default function Home() {
       <FundTable />
       <Metrics />
       <Team />
-      <Insights />
+      <LatestNews />
       <ContactCTA />
     </>
   );

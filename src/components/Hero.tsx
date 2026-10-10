@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Media from './Media';
 import Reveal from './Reveal';
-import { company } from '../data/site';
+import { company, home } from '../data/site';
 
 export default function Hero() {
   return (
@@ -9,23 +9,20 @@ export default function Hero() {
       <div className="container-site grid items-center gap-12 py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
         <div className="lg:col-span-6">
           <Reveal as="p" className="eyebrow mb-6 text-gold-deep">
-            Singapore Consortium Investment Management
+            {home.siteTitle}
           </Reveal>
           <Reveal as="h1" id="hero-heading" delay={80} className="text-hero font-extrabold">
-            Investing beyond the cycle.
+            {home.hero.title}
           </Reveal>
-          <Reveal as="p" delay={160} className="mt-8 max-w-md text-xl leading-relaxed text-mute-deep">
-            Long-term capital. Disciplined thinking. Enduring value.
+          <Reveal as="p" delay={160} className="mt-8 max-w-lg text-xl leading-relaxed text-mute-deep">
+            {home.hero.body}
           </Reveal>
-          <Reveal delay={240} className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link to="/funds" className="btn-primary group">
-              Explore our funds
+          <Reveal delay={240} className="mt-10">
+            <Link to={home.hero.cta.to} className="btn-primary group">
+              {home.hero.cta.label}
               <span className="arrow" aria-hidden="true">
                 →
               </span>
-            </Link>
-            <Link to="/about" className="btn-secondary">
-              About SICIM
             </Link>
           </Reveal>
         </div>

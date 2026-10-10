@@ -14,7 +14,7 @@ export default function Footer() {
             </Link>
             <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-mute">{company.legalName}</p>
             <Link to="/contact" className="btn-light mt-8">
-              Contact us
+              Contact Us
             </Link>
           </div>
 

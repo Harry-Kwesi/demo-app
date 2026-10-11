@@ -14,7 +14,7 @@ appear on the site with a dashed "placeholder" tag. To turn those tags off once 
 | The Team: "The Board" — Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang (full bios) | Copied verbatim |
 | Investment Philosophy: three paragraphs | Copied verbatim. Paragraph 2 is split sentence by sentence into the process steps; the step titles (Macroeconomic analysis, Fundamental analysis, Portfolio construction) and the "Indexing strategy" heading are short labels added for the design |
 | Funds: GIL (B73), SIF (S45U), Fund Information (SIF daily NAV), Fund Documents | Copied verbatim |
-| Contact Us | Pending screenshots |
+| Contact Us: map, address, telephone, e-mail (contact@sicim.com.sg) | Copied verbatim; the map is a Google Maps embed of St. Andrew's Centre |
 
 Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
 The About Us copy keeps the site's wording.

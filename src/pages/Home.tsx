@@ -1,6 +1,4 @@
 import Hero from '../components/Hero';
-import AudienceBand from '../components/AudienceBand';
-import FeatureTiles from '../components/FeatureTiles';
 import Philosophy from '../components/Philosophy';
 import Approach from '../components/Approach';
 import Investments from '../components/Investments';
@@ -16,15 +14,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <AudienceBand />
-      <FeatureTiles />
+      <LatestNews />
       <Philosophy />
       <Approach />
-      <Investments />
       <FundTable />
       <Metrics />
+      <Investments />
       <Team />
-      <LatestNews />
       <ContactCTA />
     </>
   );

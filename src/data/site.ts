@@ -1,11 +1,10 @@
 /**
  * Single source of truth for all site content.
  *
- * Facts are drawn from SICIM's public information (sicim.com.sg — About Us,
- * Investment Philosophy and The Team pages — the MAS Financial Institutions
- * Directory and SGX filings). Anything that could not be verified is marked
- * `verified: false` and rendered with a visible "placeholder" flag until the
- * SICIM team confirms or replaces it. See CONTENT.md for the full audit.
+ * Copy is taken verbatim from the pages of sicim.com.sg (Home, About Us,
+ * The Team, Investment Philosophy, Funds, Contact Us). Anything still awaiting
+ * content from SICIM renders with a visible "placeholder" flag.
+ * See CONTENT.md for the full audit.
  */
 
 /** Set to false once all placeholders have been confirmed or replaced. */
@@ -16,15 +15,25 @@ export const company = {
   legalName: 'Singapore Consortium Investment Management Limited',
   registration: '199607548K',
   established: 1996,
-  licence: 'Capital Markets Services Licence for Fund Management',
+  // Wording as used on sicim.com.sg.
+  licence: 'Capital Market Services Licence for Fund Management',
   regulator: 'Monetary Authority of Singapore',
+};
+
+/** Contact Us page, verbatim from sicim.com.sg. */
+export const contact = {
+  title: 'Contact Us',
   address: {
-    lines: ['250 Tanjong Pagar Road', '#09-01 St. Andrew’s Centre', 'Singapore 088541'],
-    // Confirmed by the SIF prospectus registered with MAS on 11 September 2026.
-    verified: true,
+    label: 'Address',
+    lines: ['250 Tanjong Pagar Road, #09-01, St. Andrew’s Centre', 'Singapore 088541'],
   },
-  phone: { display: '+65 6908 4866', href: 'tel:+6569084866', verified: false },
-  email: { display: 'enquiries@[to-be-confirmed]', href: '', verified: false },
+  phone: { label: 'Telephone', display: '+65 6908 4866', href: 'tel:+6569084866' },
+  email: { label: 'E-mail', display: 'contact@sicim.com.sg', href: 'mailto:contact@sicim.com.sg' },
+  map: {
+    title: 'Map showing St. Andrew’s Centre, 250 Tanjong Pagar Road, Singapore 088541',
+    embed: 'https://www.google.com/maps?q=St.+Andrew%27s+Centre,+250+Tanjong+Pagar+Road,+Singapore+088541&output=embed',
+    link: 'https://www.google.com/maps/search/?api=1&query=St.+Andrew%27s+Centre%2C+250+Tanjong+Pagar+Road%2C+Singapore+088541',
+  },
 };
 
 /** Primary navigation — mirrors the sections of sicim.com.sg. */
@@ -35,33 +44,6 @@ export const nav = [
   { label: 'Funds', to: '/funds' },
   { label: 'Contact Us', to: '/contact' },
 ];
-
-/** Audience selector in the utility bar — SICIM's published client types. */
-export const audiences = [
-  {
-    key: 'individual',
-    label: 'Individual investors',
-    headline: 'Access to diversified, professionally managed portfolios.',
-    body: 'SICIM manages funds listed on the Singapore Exchange, giving individual investors access to a diversified global portfolio or a low-cost indexing approach.',
-    cta: { label: 'Explore our funds', to: '/funds#funds' },
-  },
-  {
-    key: 'institutional',
-    label: 'Institutional clients',
-    headline: 'Integrated investment management and advisory services.',
-    body: 'We work with institutional clients across diversified asset classes — equities, fixed income and alternative investments — guided by fundamental analysis.',
-    cta: { label: 'Talk to our team', to: '/contact' },
-  },
-  {
-    key: 'funds',
-    label: 'Mutual funds',
-    headline: 'A licensed fund manager for collective investment schemes.',
-    body: 'As holder of a Capital Markets Services Licence for Fund Management, SICIM acts as manager to mutual funds, including SGX-listed Global Investments Limited.',
-    cta: { label: 'About SICIM', to: '/about' },
-  },
-] as const;
-
-export type AudienceKey = (typeof audiences)[number]['key'];
 
 /** Homepage copy, verbatim from sicim.com.sg (home page). */
 export const home = {
@@ -160,14 +142,11 @@ export const funds: Fund[] = [
   },
 ];
 
-/**
- * Outbound links on the Funds page. The live site's link targets were not
- * visible in the screenshots; confirm each URL (see CONTENT.md).
- */
+/** Outbound links on the Funds page (approved by SICIM). */
 export const fundLinks = {
-  gilInfo: { href: 'https://globalinvestmentslimited.com', verified: false },
-  sgx: { href: 'https://www.sgx.com', verified: false },
-  sifNavAnnouncements: { href: 'https://www.sgx.com/securities/company-announcements', verified: false },
+  gilInfo: { href: 'https://globalinvestmentslimited.com' },
+  sgx: { href: 'https://www.sgx.com' },
+  sifNavAnnouncements: { href: 'https://www.sgx.com/securities/company-announcements' },
 };
 
 export const fundsPage = {
@@ -288,24 +267,6 @@ export const team: Person[] = [
   },
 ];
 
-export type Insight = {
-  slug: string;
-  category: string;
-  date: string;
-  title: string;
-};
-
-/**
- * No articles were available to verify. These rows are layout placeholders and
- * must be replaced with real SICIM publications or SGX announcements.
- */
-export const insights: Insight[] = [
-  { slug: 'placeholder-1', category: 'Market Commentary', date: 'Date TBC', title: 'Placeholder — quarterly market commentary title' },
-  { slug: 'placeholder-2', category: 'Announcement', date: 'Date TBC', title: 'Placeholder — fund announcement or SGX disclosure title' },
-  { slug: 'placeholder-3', category: 'Perspective', date: 'Date TBC', title: 'Placeholder — investment perspective article title' },
-  { slug: 'placeholder-4', category: 'Report', date: 'Date TBC', title: 'Placeholder — annual or semi-annual report title' },
-];
-
 export type ArtVariant = 'skyline' | 'facade' | 'colonnade' | 'horizon' | 'bridge' | 'atrium';
 
 /**
@@ -332,7 +293,6 @@ export const searchIndex = [
   { title: 'SIF daily net asset value', to: '/funds#fund-information', text: 'NAV net asset value bid offer price daily' },
   { title: 'Fund documents', to: '/funds#fund-documents', text: 'prospectus product highlight sheet annual report semi annual application realisation form documents' },
   { title: 'The Team', to: '/team', text: 'team board chairman chief executive directors boon goh tan chew' },
-  { title: 'Insights', to: '/insights', text: 'commentary announcements reports news' },
-  { title: 'Contact us', to: '/contact', text: 'contact phone email address enquiry' },
-  { title: 'Privacy, legal & disclosures', to: '/legal', text: 'privacy legal disclosures terms' },
+  { title: 'Contact us', to: '/contact', text: 'contact phone telephone email address map st andrew tanjong pagar' },
+  { title: 'Terms, disclaimer & privacy', to: '/legal', text: 'terms conditions disclaimer privacy legal' },
 ];

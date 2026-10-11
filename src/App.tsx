@@ -7,11 +7,9 @@ import About from './pages/About';
 import PhilosophyPage from './pages/PhilosophyPage';
 import Funds from './pages/Funds';
 import TeamPage from './pages/TeamPage';
-import InsightsPage from './pages/InsightsPage';
 import Contact from './pages/Contact';
 import Legal from './pages/Legal';
 import NotFound from './pages/NotFound';
-import { AudienceProvider } from './hooks/useAudience';
 
 /** Scroll to top on navigation, or to the hash target when one is given. */
 function ScrollManager() {
@@ -44,7 +42,6 @@ function Pages() {
           <Route path="/philosophy" element={<PhilosophyPage />} />
           <Route path="/funds" element={<Funds />} />
           <Route path="/team" element={<TeamPage />} />
-          <Route path="/insights" element={<InsightsPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />
           {/* Paths used by the current sicim.com.sg, kept working for existing links. */}
@@ -61,15 +58,13 @@ function Pages() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AudienceProvider>
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <ScrollManager />
-        <Header />
-        <Pages />
-        <Footer />
-      </AudienceProvider>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <ScrollManager />
+      <Header />
+      <Pages />
+      <Footer />
     </BrowserRouter>
   );
 }

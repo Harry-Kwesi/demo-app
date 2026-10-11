@@ -1,50 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { audiences, company, nav, searchIndex } from '../data/site';
-import { useAudience } from '../hooks/useAudience';
+import { company, contact, nav, searchIndex } from '../data/site';
 
-/** Thin black bar above the header: audience selector, region and phone. */
+/** Thin black bar above the header: the company's full name and contact details. */
 function UtilityBar() {
-  const { audience, setAudience } = useAudience();
   return (
     <div className="on-dark bg-ink text-white">
       <div className="container-site flex h-11 items-center justify-between gap-6 text-[13px]">
-        <div role="group" aria-label="I am an…" className="-ml-4 hidden items-center md:flex">
-          {audiences.map((a) => (
-            <button
-              key={a.key}
-              type="button"
-              aria-pressed={audience === a.key}
-              onClick={() => setAudience(a.key)}
-              className={`relative h-11 px-4 font-semibold transition-colors ${
-                audience === a.key ? 'text-white' : 'text-white/60 hover:text-white'
-              }`}
-            >
-              {a.label}
-              {audience === a.key && <span className="absolute inset-x-4 bottom-0 h-[3px] bg-gold" aria-hidden="true" />}
-            </button>
-          ))}
-        </div>
-        <label className="flex items-center gap-2 md:hidden">
-          <span className="sr-only">I am an</span>
-          <select
-            value={audience}
-            onChange={(e) => setAudience(e.target.value as typeof audience)}
-            className="border-0 bg-transparent py-0 pl-0 pr-6 text-[13px] font-semibold text-white focus:ring-0"
-          >
-            {audiences.map((a) => (
-              <option key={a.key} value={a.key} className="text-ink">
-                {a.label}
-              </option>
-            ))}
-          </select>
-        </label>
-        <div className="flex items-center gap-6 text-white/80">
-          <span className="hidden sm:inline">
-            <span aria-hidden="true">◉ </span>Singapore
-          </span>
-          <a href={company.phone.href} className="font-semibold hover:text-white">
-            {company.phone.display}
+        <p className="truncate font-semibold uppercase tracking-[0.08em]">{company.legalName}</p>
+        <div className="hidden shrink-0 items-center gap-6 text-white/80 md:flex">
+          <a href={contact.phone.href} className="font-semibold hover:text-white">
+            {contact.phone.display}
+          </a>
+          <a href={contact.email.href} className="font-semibold hover:text-white">
+            {contact.email.display}
           </a>
         </div>
       </div>
@@ -88,7 +57,7 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search funds, insights, people…"
+            placeholder="Search funds, documents, people…"
             autoComplete="off"
             className="w-full border-0 bg-transparent p-0 text-2xl font-bold placeholder:text-mute focus:outline-none focus:ring-0 [&::-webkit-search-cancel-button]:hidden"
           />
@@ -291,8 +260,8 @@ export default function Header() {
             </ul>
           </nav>
           <div className="container-site shrink-0 border-t border-line py-6">
-            <a href={company.phone.href} className="btn-secondary w-full">
-              Call {company.phone.display}
+            <a href={contact.phone.href} className="btn-secondary w-full">
+              Call {contact.phone.display}
             </a>
           </div>
         </div>

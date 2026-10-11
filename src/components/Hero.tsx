@@ -31,9 +31,9 @@ export default function Hero() {
             <Media slot="hero" eager />
           </div>
           <div className="relative -mt-16 ml-6 max-w-xs border-l-4 border-gold bg-white p-6 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.35)] sm:absolute sm:-bottom-8 sm:-left-8 sm:mt-0 sm:ml-0">
-            <p className="eyebrow text-gold-deep">Licensed fund manager</p>
+            <p className="eyebrow text-gold-deep">Licensed since 1996</p>
             <p className="mt-3 text-[15px] font-semibold leading-snug">
-              {company.licence}, {company.regulator}.
+              {company.licence} issued by the {company.regulator}.
             </p>
           </div>
         </Reveal>

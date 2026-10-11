@@ -45,7 +45,6 @@ export default function Funds() {
   useTitle(fundsPage.title);
   const nav = useSifNav();
   const { gil: gilCopy, sif: sifCopy, info, documents } = fundsPage;
-  const linksPending = Object.values(fundLinks).some((l) => !l.verified);
 
   return (
     <>
@@ -128,7 +127,6 @@ export default function Funds() {
               ))}
             </ul>
           </Reveal>
-          {linksPending && <Pending className="mt-8" label="Confirm external link URLs" />}
         </div>
       </section>
 

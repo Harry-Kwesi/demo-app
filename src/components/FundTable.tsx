@@ -1,30 +1,26 @@
 import { Link } from 'react-router-dom';
-import Pending from './Pending';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
 import ArrowLink from './ArrowLink';
-import { funds } from '../data/site';
+import { funds, fundsPage } from '../data/site';
+import { useSifNav } from '../hooks/useSifNav';
 
-/** Product-table listing of the funds SICIM manages. */
-export default function FundTable({ showLink = true }: { showLink?: boolean }) {
+/** Homepage listing of the two SGX-listed funds, with the latest SIF prices. */
+export default function FundTable() {
+  const nav = useSifNav();
   return (
-    <section id="funds" aria-labelledby="funds-heading" className="scroll-mt-24 bg-white py-20 lg:py-28">
+    <section aria-labelledby="funds-heading" className="bg-white py-20 lg:py-28">
       <div className="container-site">
-        <SectionHeading
-          id="funds-heading"
-          eyebrow="Funds we manage"
-          title="Listed on the Singapore Exchange."
-          action={showLink ? <ArrowLink to="/funds">View all funds</ArrowLink> : undefined}
-        />
+        <SectionHeading id="funds-heading" title={fundsPage.title} action={<ArrowLink to="/funds">View funds</ArrowLink>} />
+
         <Reveal className="hidden md:block">
           <table className="w-full border-collapse text-left">
             <caption className="sr-only">Funds managed by SICIM</caption>
             <thead>
               <tr className="border-b-2 border-ink text-[13px] font-bold uppercase tracking-[0.08em]">
                 <th scope="col" className="py-4 pr-6">Fund</th>
-                <th scope="col" className="py-4 pr-6">Type</th>
-                <th scope="col" className="py-4 pr-6">Exchange</th>
-                <th scope="col" className="py-4 pr-6">Strategy</th>
+                <th scope="col" className="py-4 pr-6">SGX code</th>
+                <th scope="col" className="py-4 pr-6">Overview</th>
                 <th scope="col" className="py-4">
                   <span className="sr-only">Details</span>
                 </th>
@@ -32,17 +28,17 @@ export default function FundTable({ showLink = true }: { showLink?: boolean }) {
             </thead>
             <tbody>
               {funds.map((f) => (
-                <tr key={f.slug} id={f.slug} className="scroll-mt-28 border-b border-line align-top transition-colors hover:bg-surface">
-                  <th scope="row" className="py-6 pr-6">
-                    <span className="block text-lg font-extrabold">{f.name}</span>
-                    {!f.verified && <Pending className="mt-3" label="Confirm status" />}
+                <tr key={f.slug} className="border-b border-line align-top transition-colors hover:bg-surface">
+                  <th scope="row" className="py-6 pr-6 text-lg font-extrabold">
+                    {f.name}
                   </th>
-                  <td className="py-6 pr-6 text-[15px]">{f.type}</td>
-                  <td className="py-6 pr-6 text-[15px]">SGX</td>
-                  <td className="max-w-md py-6 pr-6 text-[15px] leading-relaxed text-mute-deep">{f.body}</td>
+                  <td className="py-6 pr-6">
+                    <span className="inline-block border-2 border-ink px-2 py-0.5 text-[14px] font-extrabold">{f.code}</span>
+                  </td>
+                  <td className="max-w-xl py-6 pr-6 text-[15px] leading-relaxed text-mute-deep">{f.summary}</td>
                   <td className="py-6 text-right">
-                    <Link to="/contact" className="group inline-flex items-center gap-2 whitespace-nowrap font-bold" aria-label={`Enquire about ${f.name}`}>
-                      <span className="u-link">Enquire</span>
+                    <Link to={`/funds#${f.slug}`} className="group inline-flex items-center gap-2 whitespace-nowrap font-bold" aria-label={`View ${f.name}`}>
+                      <span className="u-link">View fund</span>
                       <span className="arrow" aria-hidden="true">
                         →
                       </span>
@@ -54,18 +50,15 @@ export default function FundTable({ showLink = true }: { showLink?: boolean }) {
           </table>
         </Reveal>
 
-        {/* Small screens: one card per fund instead of a wide table. */}
+        {/* Small screens: one card per fund. */}
         <ul className="space-y-4 md:hidden">
           {funds.map((f) => (
-            <Reveal as="li" key={f.slug} id={`${f.slug}-card`} className="border-t-2 border-ink bg-surface p-6">
-              <h3 className="text-title font-extrabold">{f.name}</h3>
-              <p className="mt-2 text-[14px] font-semibold text-mute-deep">
-                {f.type} · SGX
-              </p>
-              <p className="mt-4 text-[15px] leading-relaxed text-mute-deep">{f.body}</p>
-              {!f.verified && <Pending className="mt-4" label="Confirm status" />}
-              <Link to="/contact" className="group mt-5 inline-flex items-center gap-2 font-bold">
-                <span className="u-link">Enquire</span>
+            <Reveal as="li" key={f.slug} className="border-t-2 border-ink bg-surface p-6">
+              <p className="inline-block border-2 border-ink px-2 py-0.5 text-[13px] font-extrabold">{f.code}</p>
+              <h3 className="mt-3 text-title font-extrabold">{f.name}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-mute-deep">{f.summary}</p>
+              <Link to={`/funds#${f.slug}`} className="group mt-5 inline-flex items-center gap-2 font-bold">
+                <span className="u-link">View fund</span>
                 <span className="arrow" aria-hidden="true">
                   →
                 </span>
@@ -73,9 +66,20 @@ export default function FundTable({ showLink = true }: { showLink?: boolean }) {
             </Reveal>
           ))}
         </ul>
-        <p className="mt-8 max-w-3xl text-[13px] leading-relaxed text-mute-deep">
-          The value of investments and any income from them can fall as well as rise. Past performance is not indicative of future performance.
-        </p>
+
+        <Reveal className="mt-10 flex flex-col gap-4 bg-ink p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <p className="text-[15px] font-semibold">
+            {fundsPage.info.navTitle} {nav.dealingDate}
+          </p>
+          <p className="flex gap-8 text-[15px]">
+            <span>
+              Bid price: <strong className="text-xl font-extrabold">{nav.bid}</strong>
+            </span>
+            <span>
+              Offer price: <strong className="text-xl font-extrabold">{nav.offer}</strong>
+            </span>
+          </p>
+        </Reveal>
       </div>
     </section>
   );

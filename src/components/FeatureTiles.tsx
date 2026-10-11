@@ -14,9 +14,9 @@ const tiles: { label: string; title: string; body: string; to: string; art: ArtV
   },
   {
     label: 'Funds',
-    title: 'Funds listed on the Singapore Exchange.',
-    body: 'Global Investments Limited and the Singapore Index Fund.',
-    to: '/funds#funds',
+    title: 'Global Investments Limited (B73) and Singapore Index Fund (S45U)',
+    body: 'Listed on the Singapore Exchange Securities Trading Limited (SGX-ST).',
+    to: '/funds',
     art: 'bridge',
   },
   {

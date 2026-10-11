@@ -136,86 +136,91 @@ export const process = {
   ] as Stage[],
 };
 
-export type AssetClass = {
-  index: string;
-  slug: string;
-  title: string;
-  body: string;
-  art: ArtVariant;
-};
-
-/**
- * Asset classes SICIM publicly describes. The brief suggested "Private equity /
- * Alternative assets / Strategic investments"; only categories supported by
- * SICIM's published information are shown.
- */
-export const assetClasses: AssetClass[] = [
-  {
-    index: '01',
-    slug: 'equities',
-    title: 'Public & Private Equities',
-    body: 'Listed and private equity, including preference shares, selected through fundamental analysis across sectors positioned to benefit from the economic cycle.',
-    art: 'skyline',
-  },
-  {
-    index: '02',
-    slug: 'fixed-income',
-    title: 'Fixed Income',
-    body: 'Debt instruments and loans chosen to provide steady income, diversified across currencies and maturities.',
-    art: 'horizon',
-  },
-  {
-    index: '03',
-    slug: 'alternatives',
-    title: 'Alternative Investments',
-    body: 'Options, warrants, derivatives and structured finance used to broaden diversification and manage portfolio risk.',
-    art: 'bridge',
-  },
-];
-
 export type Fund = {
   slug: string;
   name: string;
-  type: string;
-  listing: string;
-  body: string;
-  verified: boolean;
-  note?: string;
+  code: string;
+  /** Verbatim from the Funds page of sicim.com.sg. */
+  summary: string;
 };
 
+/** Funds page, verbatim from sicim.com.sg. */
 export const funds: Fund[] = [
   {
     slug: 'global-investments-limited',
     name: 'Global Investments Limited',
-    type: 'Mutual fund',
-    listing: 'Listed on the Singapore Exchange (SGX)',
-    body: 'An SGX-listed mutual fund company managed by SICIM, investing in a diversified global portfolio with the aim of generating steady income and potential capital appreciation.',
-    verified: true,
+    code: 'B73',
+    summary:
+      'Global Investments Limited (“GIL”) is a mutual fund company listed on the Main Board of the Singapore Exchange Securities Trading Limited (SGX-ST) and GIL is managed by SICIM.',
   },
   {
     slug: 'singapore-index-fund',
     name: 'Singapore Index Fund',
-    type: 'Index fund',
-    listing: 'Traded on the Singapore Exchange (SGX)',
-    body: 'For investors who prefer a low-cost, passive approach. The fund follows an indexing strategy, seeking to mirror as closely as possible — before expenses — the performance of the index it is designed to track.',
-    verified: false,
-    note: 'Confirm current status and tracked index with SICIM before launch.',
+    code: 'S45U',
+    summary: 'Singapore Index Fund (SIF) is listed on the Singapore Exchange Securities Trading Limited (SGX-ST).',
   },
 ];
+
+/**
+ * Outbound links on the Funds page. The live site's link targets were not
+ * visible in the screenshots; confirm each URL (see CONTENT.md).
+ */
+export const fundLinks = {
+  gilInfo: { href: 'https://globalinvestmentslimited.com', verified: false },
+  sgx: { href: 'https://www.sgx.com', verified: false },
+  sifNavAnnouncements: { href: 'https://www.sgx.com/securities/company-announcements', verified: false },
+};
+
+export const fundsPage = {
+  title: 'Funds',
+  gil: {
+    // "Click here" is the linked text on the live site.
+    body: ['Global Investments Limited (“GIL”) is a mutual fund company listed on the Main Board of the Singapore Exchange Securities Trading Limited (SGX-ST) and GIL is managed by SICIM.', 'Click here', 'for more information.'],
+  },
+  sif: {
+    subtitle: 'Trading through SGX',
+    body: 'Singapore Index Fund (SIF) is listed on the Singapore Exchange Securities Trading Limited (SGX-ST). Units deposited with The Central Depository (Pte) Limited (the “CDP”) will be traded on the SGX-ST at market prices throughout the trading day.',
+    more: ['For detailed information, please visit', 'SGX', '.'],
+  },
+  info: {
+    title: 'Fund Information',
+    navTitle: 'SIF Daily Net Asset Value S$ for dealing date:',
+    note: 'The above listed BID/OFFER prices should be used as indicative prices for next trading day.',
+    announcement: ['For SIF’s daily NAV announcement to SGX, please', 'click here', '.'],
+    steps: ['Security Name — select “SINGAPORE INDEX FUND”', 'Announcement Period — select “Last 3 Months”'],
+  },
+  documents: {
+    title: 'Fund Documents',
+    /** Set `href` to each PDF (e.g. '/documents/sif-prospectus.pdf' in /public) once supplied. */
+    items: [
+      { label: 'Prospectus', href: '' },
+      { label: 'Product Highlight Sheet', href: '' },
+      { label: 'Annual Report', href: '' },
+      { label: 'Semi Annual Report', href: '' },
+      { label: 'Application / Realisation Form', href: '' },
+    ],
+  },
+};
+
+/**
+ * Last published SIF prices, used if /data/sif-nav.json cannot be loaded.
+ * The live values are read from public/data/sif-nav.json so they can be
+ * updated daily without rebuilding the site.
+ */
+export const sifNavFallback = { dealingDate: '08-Oct-2026', bid: '5.0315', offer: '5.1839' };
 
 export type Metric = {
   label: string;
   value: string;
   caption: string;
-  verified: boolean;
 };
 
-/** Only 1996 is verified. All other values are placeholders — do not fill with estimates. */
+/** Figures drawn only from the About Us and Funds pages. */
 export const metrics: Metric[] = [
-  { label: 'Established', value: '1996', caption: 'Year of incorporation in Singapore', verified: true },
-  { label: 'Markets', value: '—', caption: 'Number of markets invested in', verified: false },
-  { label: 'Capital', value: '—', caption: 'Assets under management', verified: false },
-  { label: 'Investments', value: '—', caption: 'Number of portfolio holdings', verified: false },
+  { label: 'Incorporated', value: '1996', caption: 'Incorporated in Singapore' },
+  { label: 'Licensed', value: '1996', caption: 'Capital Market Services Licence for Fund Management issued by the Monetary Authority of Singapore' },
+  { label: 'Funds', value: '2', caption: 'Listed on the Singapore Exchange (SGX-ST)' },
+  { label: 'Asset classes', value: '6', caption: 'A broad range of diversified asset classes' },
 ];
 
 export type Person = {
@@ -322,9 +327,11 @@ export const searchIndex = [
   { title: 'Corporate information', to: '/about#corporate', text: 'registration licence regulator monetary authority office address' },
   { title: 'Investment Philosophy', to: '/philosophy', text: 'philosophy diversification total return macroeconomic cycle fundamental analysis indexing' },
   { title: 'Our approach', to: '/philosophy#approach', text: 'identify invest build grow process' },
-  { title: 'Asset classes', to: '/funds#asset-classes', text: 'equities fixed income alternatives derivatives loans structured finance' },
-  { title: 'Global Investments Limited', to: '/funds#global-investments-limited', text: 'fund mutual SGX listed' },
-  { title: 'Singapore Index Fund', to: '/funds#singapore-index-fund', text: 'index passive fund SGX' },
+  { title: 'Asset classes', to: '/about', text: 'asset classes equities fixed income alternatives derivatives loans structured finance' },
+  { title: 'Global Investments Limited (B73)', to: '/funds#global-investments-limited', text: 'GIL fund mutual SGX listed B73' },
+  { title: 'Singapore Index Fund (S45U)', to: '/funds#singapore-index-fund', text: 'SIF index passive fund SGX S45U' },
+  { title: 'SIF daily net asset value', to: '/funds#fund-information', text: 'NAV net asset value bid offer price daily' },
+  { title: 'Fund documents', to: '/funds#fund-documents', text: 'prospectus product highlight sheet annual report semi annual application realisation form documents' },
   { title: 'The Team', to: '/team', text: 'team board chairman chief executive directors boon goh tan chew' },
   { title: 'Insights', to: '/insights', text: 'commentary announcements reports news' },
   { title: 'Contact us', to: '/contact', text: 'contact phone email address enquiry' },

@@ -13,7 +13,8 @@ appear on the site with a dashed "placeholder" tag. To turn those tags off once 
 | About Us: single paragraph (incorporated 1996; licence issued by MAS in 1996; asset classes) | Copied verbatim |
 | The Team: "The Board" — Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang (full bios) | Copied verbatim |
 | Investment Philosophy: three paragraphs | Copied verbatim. Paragraph 2 is split sentence by sentence into the process steps; the step titles (Macroeconomic analysis, Fundamental analysis, Portfolio construction) and the "Indexing strategy" heading are short labels added for the design |
-| Funds, Contact Us | Pending screenshots |
+| Funds: GIL (B73), SIF (S45U), Fund Information (SIF daily NAV), Fund Documents | Copied verbatim |
+| Contact Us | Pending screenshots |
 
 Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
 The About Us copy keeps the site's wording.
@@ -34,7 +35,11 @@ The About Us copy keeps the site's wording.
 - **Office address**: 250 Tanjong Pagar Road, #09-01 St. Andrew's Centre, Singapore 088541. SICIM has filed a change of registered address with SGX, so check this is the current address.
 - **Phone**: +65 6908 4866 (from directories).
 - **Email**: not found. The site shows a placeholder.
-- **Singapore Index Fund**: confirm it is still active and which index it tracks.
+- **Funds page links**: the live site's link targets were not visible in the screenshots. Current guesses are in
+  `fundLinks` (`src/data/site.ts`): GIL "Click here" → globalinvestmentslimited.com, "SGX" → sgx.com, and the
+  NAV "click here" → SGX company announcements. Confirm each one, then set `verified: true`.
+- **Fund documents**: the Prospectus, Product Highlight Sheet, Annual Report, Semi Annual Report and Application /
+  Realisation Form PDFs are needed. Put them in `public/documents/` and set each `href`.
 - **Team portraits**: none supplied yet; placeholders show initials.
 - **Key figures**: only "1996" is verified. Markets, capital (AUM) and number of investments are deliberately left as "—".
 - **Insights**: no articles were available. All four rows are placeholders.

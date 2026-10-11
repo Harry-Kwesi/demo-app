@@ -22,6 +22,16 @@ src/
   hooks/              useInView, useAudience (remembers the visitor's investor type), useTitle
 ```
 
+## Updating the SIF daily price
+
+The Funds page and homepage read the Singapore Index Fund's bid/offer prices from `public/data/sif-nav.json`:
+
+```json
+{ "dealingDate": "08-Oct-2026", "bid": "5.0315", "offer": "5.1839" }
+```
+
+Edit that file on the server to publish a new dealing date. No rebuild is needed.
+
 ## Imagery
 
 Each image slot currently renders a generated, dark architectural composition (`components/Art.tsx`): seeded SVG that

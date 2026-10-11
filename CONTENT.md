@@ -1,61 +1,54 @@
 # Content audit
 
-Every factual statement on the site lives in `src/data/site.ts`. During the build, sicim.com.sg could not be reached directly, so
-the facts below come from public sources that index or reproduce SICIM's site. Items marked **placeholder**
-appear on the site with a dashed "placeholder" tag. To turn those tags off once everything is confirmed, set
-`SHOW_CONTENT_FLAGS = false`.
+All copy lives in `src/data/site.ts`. It was copied word for word from screenshots of each page of sicim.com.sg,
+supplied by the client.
 
-## Copied from sicim.com.sg (screenshots supplied by the client)
+## Pages
 
-| Page | Status |
-| --- | --- |
-| Home: "Our Philosophy" hero and "Latest News" notice | Copied verbatim |
-| About Us: single paragraph (incorporated 1996; licence issued by MAS in 1996; asset classes) | Copied verbatim |
-| The Team: "The Board" — Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang (full bios) | Copied verbatim |
-| Investment Philosophy: three paragraphs | Copied verbatim. Paragraph 2 is split sentence by sentence into the process steps; the step titles (Macroeconomic analysis, Fundamental analysis, Portfolio construction) and the "Indexing strategy" heading are short labels added for the design |
-| Funds: GIL (B73), SIF (S45U), Fund Information (SIF daily NAV), Fund Documents | Copied verbatim |
-| Contact Us: map, address, telephone, e-mail (contact@sicim.com.sg) | Copied verbatim; the map is a Google Maps embed of St. Andrew's Centre |
+| Page | Source | Notes |
+| --- | --- | --- |
+| Home | "Our Philosophy" hero and the "Latest News" notice | Verbatim |
+| About Us | Single paragraph | Verbatim. The key-facts strip and asset-class list restate that paragraph |
+| The Team | "The Board": Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang | Full bios verbatim |
+| Investment Philosophy | Three paragraphs | Verbatim. Paragraph 2 is split by sentence into the process steps |
+| Funds | GIL (B73), SIF (S45U), Fund Information, Fund Documents | Verbatim. SIF prices load from `public/data/sif-nav.json` |
+| Contact Us | Map, address, telephone, e-mail | Verbatim. The map is a Google Maps embed of St. Andrew's Centre |
 
-Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
-The About Us copy keeps the site's wording.
+The homepage sections after "Latest News" reuse text from these pages; they add no new copy.
 
-## Verified (public sources)
+## Labels added for the design
 
-| Fact | Source |
-| --- | --- |
-| Legal name: Singapore Consortium Investment Management Limited | MAS Financial Institutions Directory; SGX filings |
-| Co. Reg. No. 199607548K; incorporated 1996 | ACRA record (via RecordOwl); SGX filing |
-| Capital Markets Services Licence for Fund Management, MAS | MAS Financial Institutions Directory |
-| Services across equities, fixed income, alternative investments; clients: individual, institutional, mutual funds | sicim.com.sg/about-us (search index) |
-| Investment philosophy: consistent total return via active management; diversification across industries, currencies, maturities; macro cycle analysis; fundamental selection; indexing fund option | sicim.com.sg/investment-strategy (search index) |
-| Manager of Global Investments Limited (SGX-listed mutual fund) | SGX; sicim.com.sg |
+These short headings are not on sicim.com.sg:
+- the process step titles: Macroeconomic analysis, Fundamental analysis, Portfolio construction
+- the "Our approach" and "Indexing strategy" headings
+- the "Licensed since 1996" hero card
+- the figures band labels (Incorporated, Licensed, Funds, Asset classes)
+- "Integrated investment management and advisory services" as a heading (the phrase comes from About Us)
 
-## Needs confirmation (shown with placeholder tags)
+## Fund documents
 
-- **Office address**: confirmed as 250 Tanjong Pagar Road, #09-01 St Andrew's Centre, Singapore 088541 by the SIF prospectus.
-- **Director name**: the prospectus lists "Tan Mui Hong" as a director of the Managers. The website uses "Goh Mui Hong".
-  Confirm which form SICIM wants on the site.
-- **Phone**: +65 6908 4866 (from directories).
-- **Email**: not found. The site shows a placeholder.
-- **Funds page links**: the live site's link targets were not visible in the screenshots. Current guesses are in
-  `fundLinks` (`src/data/site.ts`): GIL "Click here" → globalinvestmentslimited.com, "SGX" → sgx.com, and the
-  NAV "click here" → SGX company announcements. Confirm each one, then set `verified: true`.
-- **Fund documents**: supplied and linked from `public/documents/`. They are the SIF Prospectus (registered with MAS
-  11 Sep 2026), Product Highlights Sheet, Annual Report (FY ended 30 Jun 2026), Semi Annual Report (half year ended
-  31 Dec 2025) and Application / Realisation Form (approved 10 Sep 2026). To publish a new version, replace the file
-  with the same name.
-- **Team portraits**: none supplied yet; placeholders show initials.
-- **Key figures**: only "1996" is verified. Markets, capital (AUM) and number of investments are deliberately left as "—".
-- **Insights**: no articles were available. All four rows are placeholders.
-- **Privacy / Legal / Disclosures**: compliance copy still needed.
-- **Contact form**: no submission endpoint is connected yet.
+The PDFs in `public/documents/` were supplied by the client:
+- SIF Prospectus (registered with MAS 11 Sep 2026)
+- Product Highlights Sheet
+- Annual Report (FY ended 30 Jun 2026)
+- Semi Annual Report (half year ended 31 Dec 2025)
+- Application / Realisation Form (approved 10 Sep 2026)
 
-## Copy from the design brief
+Replace a file with one of the same name to publish a new version.
 
-These lines are positioning copy that came from the brief, not from SICIM's own materials. Approve them before launch:
-"Investing beyond the cycle", "We are a private investment firm focused on…", "We think in decades, not quarters",
-"Capital with conviction". On public sources SICIM describes itself as a licensed fund manager, so "private investment firm"
-should be signed off.
+## External links (approved by the client)
 
-The brief's suggested categories (Private Equity / Alternative Assets / Strategic Investments) were replaced with the categories
-SICIM publishes: Public & Private Equities, Fixed Income and Alternative Investments.
+- GIL "Click here" → https://globalinvestmentslimited.com
+- "SGX" → https://www.sgx.com
+- SIF NAV announcement "click here" → https://www.sgx.com/securities/company-announcements
+
+## Still needed from SICIM
+
+- **Terms and Conditions, Disclaimer and Privacy** text for `/legal`. It currently shows placeholders.
+- **Director name**: the prospectus lists "Tan Mui Hong"; the website uses "Goh Mui Hong". The site keeps "Goh Mui Hong".
+- **Photography** (optional): board portraits and a hero image. Generated artwork and initials are shown until then.
+
+## Wording kept as on the live site
+
+- "Capital Market Services Licence". MAS's own term is "Capital Markets Services Licence".
+- "assets growth", "Mr. Boon" / "Mr Boon", "licenced".

@@ -11,7 +11,8 @@ appear on the site with a dashed "placeholder" tag. To turn those tags off once 
 | --- | --- |
 | Home: "Our Philosophy" hero and "Latest News" notice | Copied verbatim |
 | About Us: single paragraph (incorporated 1996; licence issued by MAS in 1996; asset classes) | Copied verbatim |
-| The Team, Investment Philosophy, Funds, Contact Us | Pending screenshots |
+| The Team: "The Board" — Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang (full bios) | Copied verbatim |
+| Investment Philosophy, Funds, Contact Us | Pending screenshots |
 
 Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
 The About Us copy keeps the site's wording.
@@ -33,7 +34,7 @@ The About Us copy keeps the site's wording.
 - **Phone**: +65 6908 4866 (from directories).
 - **Email**: not found. The site shows a placeholder.
 - **Singapore Index Fund**: confirm it is still active and which index it tracks.
-- **Team**: Boon Swan Foo (Executive Chairman) and Goh Mui Hong (Executive Director & CEO), from the sicim.com.sg team page as indexed. Confirm both are current and provide approved bios and portraits.
+- **Team portraits**: none supplied yet; placeholders show initials.
 - **Key figures**: only "1996" is verified. Markets, capital (AUM) and number of investments are deliberately left as "—".
 - **Insights**: no articles were available. All four rows are placeholders.
 - **Privacy / Legal / Disclosures**: compliance copy still needed.

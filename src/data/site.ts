@@ -252,10 +252,11 @@ export type Person = {
   name: string;
   role: string;
   initials: string;
-  short: string;
   bio: string[];
-  verified: boolean;
 };
+
+/** The Team page, verbatim from sicim.com.sg. */
+export const teamPage = { title: 'The Team', board: 'The Board' };
 
 export const team: Person[] = [
   {
@@ -263,22 +264,52 @@ export const team: Person[] = [
     name: 'Boon Swan Foo',
     role: 'Executive Chairman',
     initials: 'BSF',
-    short: 'Executive Chairman of SICIM, with senior leadership experience across Singapore’s engineering and research sectors.',
     bio: [
-      'Mr Boon is Executive Chairman and an Executive Director of SICIM, and Chairman and non-executive Director of Global Investments Limited, a mutual fund company listed on SGX-ST.',
-      'He previously served as Chief Executive Officer and Deputy Chairman of ST Engineering Ltd from October 1997 to May 2001, and as Managing Director of A*STAR from January 2002 to January 2006.',
+      'Mr Boon is the Executive Director and Chairman of Singapore Consortium Investment Management Limited.',
+      'Mr Boon is also the Chairman and non-executive Director of Global Investments Limited, a mutual fund company listed on SGX-ST.',
+      'Mr Boon served as Chief Executive Officer and Deputy Chairman of ST Engineering Ltd from October 1997 to May 2001, and was the Managing Director of Agency for Science, Technology and Research (A*STAR) from January 2002 to January 2006. He also served concurrently as Executive Chairman of Exploit Technologies Pte Ltd, the commercial arm of A*STAR, from August 2001 to December 2009. For his stewardship of ST Engineering Ltd, Mr Boon was awarded one of Singapore’s most prestigious business awards, the Singapore Business Award for Outstanding CEO in 2000. Mr Boon was also Chairman of ST Asset Management Ltd. from April 2010 to December 2011.',
+      'Mr Boon was a director of Intouch Holdings Plc, a telecommunications and satellite holding company listed on the Stock Exchange of Thailand from September 2007 to November 2016. He served on the board of MIH Holdings Limited (South Africa), an investment holding and internet company from April 2011 to October 2013. He also served on the board of Dongfeng Motor Corporation (China), an automobile manufacturer from July 2011 to January 2018 and the board of China National Offshore Oil Corporation, a national oil company from February 2012 to August 2019. He was also a director of China Huadian Corporation, a power generation company from April 2015 to October 2021 and a director of Orica Limited, one of the world’s largest providers of commercial explosives and blasting systems provider based in Australia from May 2019 to December 2022. Notably, Mr Boon previously served on the Board of China Baowu Steel Group Corporation Limited, the world’s largest steel producer from October 2019 to December 2022.',
+      'Mr. Boon served as senior advisor to Temasek Holdings and Temasek International Advisors Pte. Ltd. from time to time over the last two decades. He was also an advisor to the Dean’s Council of Harvard’s Kennedy School of Government (U.S.A); Motorola Inc. Research Visionary Board (U.S.A); Commercialisation Advisory Board of Imperial College (U.K) and Advanced Institute of Science & Technology (Japan).',
+      'Mr Boon graduated from Newcastle upon Tyne with a degree in Naval Architecture (First Class Honours). He is a member of the Institute of Singapore Chartered Accountants which in 2023 conferred on him the Distinguished Lifetime Membership Award. Mr Boon also holds an Honorary Degree of Doctor of the University from the University of Bradford, U.K., an MBA from the National University of Singapore, and has completed Harvard’s Advanced Management Program. He is a Senior Accredited Director of the Singapore Institute of Directors.',
     ],
-    // Sourced from SICIM's team page via search index; confirm roles are current.
-    verified: false,
   },
   {
     slug: 'goh-mui-hong',
     name: 'Goh Mui Hong',
     role: 'Executive Director & Chief Executive Officer',
     initials: 'GMH',
-    short: 'Executive Director and Chief Executive Officer of SICIM.',
-    bio: ['Full biography to be provided by SICIM.'],
-    verified: false,
+    bio: [
+      'Mrs Goh Mui Hong is the Executive Director and Chief Executive Officer of Singapore Consortium Investment Management Limited.',
+      'Mrs Goh has more than 30 years of extensive experience in managing fund management and trust companies which invest in the full spectrum of financial instruments ranging from public equities, bonds, loans, asset backed securities, currencies to alternative investments such as private equity, hedge funds, derivatives and commodities. She was also involved in launching and managing collateralised debt obligations from 1998 to 2015.',
+      'Mrs Goh was the President and CEO of ST Asset Management Ltd (“STAM”) and Chairman of STAM’s Investment Committee from 2002 to 2019, during which STAM’s assets under management (“AUM”) grew to more than SGD 6 billion by December 2016. Concurrently, Mrs Goh was also the Executive Director of ST Trustees Ltd (established in 2005, holding a trust business licence from Monetary Authority of Singapore) which offers fiduciary trust services. From February 2004 to August 2008, Mrs Goh also held the positions of Group President & CEO of Vertex Venture Holdings Ltd and President & CEO of Vertex Management (II) Pte Ltd.',
+      'Prior to STAM, Mrs Goh spent 11 years with the Overseas Union Bank Limited (“OUB”) group which she joined in 1990 and last appointed as Senior Vice President (Fund Management). Mrs Goh was appointed Executive Director & Chief Executive Officer of OUB Asset Management Ltd (“OUBAM”) (a wholly-owned subsidiary of OUB) in 1994. Under her stewardship, AUM at OUBAM grew from S$400 million to S$5.6 billion in April 2002, making OUBAM the largest local bank-backed fund management house in Singapore and a leading Asian manager of structured finance products.',
+      'During her tenure at OUB, she was appointed director of several OUB group companies namely, Overseas Union Bank Trustees Ltd, OUB Optimix Funds Management Ltd, OUB-TA Asset Management Sdn Bhd and OUB Investments Pte Ltd. Subsequent to the takeover of OUB by United Overseas Bank Limited (“UOB”) in 2001, she also served as the Managing Director & Chief Operating Officer of UOB Asset Management Ltd and a Director of United International Securities Trading Pte Ltd and United Overseas Bank Trustees Limited.',
+      'Mrs Goh served as a board member of China-Singapore Suzhou Industrial Park Development Group Co., Ltd and Chairman of its Audit Committee, as well as a member of the Investors’ Education Advisory Committee of Securities Investors Association (Singapore).',
+      'Previously, she held directorship in Singapore Consortium Investment Management Ltd (1996 to 2002) and Singapore Corporation of Rehabilitative Enterprises (2003 to 2012). She was also a board member of Workforce Development Agency (“WDA”) and Chairman of its Investment Committee from 2007 to 2016. After WDA was restructured into SkillsFuture Singapore Agency (“SSG”) and Workforce Singapore, she continued to serve as a board member and Chairman of the Investment Committee in SSG from 2016 to 2017.',
+      'Mrs Goh was a member of the Executive Committee of Investment Management Association of Singapore (1998 to 2002) and its Chairman of Education Sub-Committee, and a member of the Investors’ Education Advisory Committee of Securities Investors Association (Singapore) (2001 to 2002). She also served as a member of Investment Committee of the National Kidney Foundation (2006 to 2010) and the Finance Committee of Singapore Chinese Chamber of Commerce & Industry (2007 to 2009).',
+      'Mrs Goh holds a Bachelor of Accountancy (2nd Class Honours) from University of Singapore, Masters of Business Administration from National University of Singapore and Masters of Science (Business) from Nanyang Technological University of Singapore and has completed the Advanced Management Program at Harvard Business School. She is also a member of CFA Institute. She was awarded Singapore’s National Day Public Service Medal in 2012.',
+    ],
+  },
+  {
+    slug: 'martha-tan-hui-keng',
+    name: 'Martha Tan Hui Keng',
+    role: 'Non-Executive Director',
+    initials: 'MT',
+    bio: [
+      'Ms Tan was previously an audit partner of KPMG from 1989-2005 and has more than 25 years of experience in the public accounting field, which includes auditing, taxation, public listings, due diligence, mergers and acquisitions, internal control reviews and general business advisory services.',
+      'She was a Director of STAM from 2010 to 2011 and a Director of Vertex Management (II) Pte Ltd from 2007 to 2009. She is currently a non-executive Director of Singapura Finance Limited, a Finance Company licenced by the Monetary Authority of Singapore and listed on the Main Board of the SGX-ST.',
+      'Ms Tan holds a Degree (Honours) in Accountancy from the University of Singapore and is a Fellow member of the Institute of Singapore Chartered Accountants.',
+    ],
+  },
+  {
+    slug: 'chew-seng-fang',
+    name: 'Chew Seng Fang',
+    role: 'Non-Executive Director',
+    initials: 'CSF',
+    bio: [
+      'Ms Chew has more than 35 years of experience in the corporate and personal tax planning. She was the tax director of Johnson & Johnson (S) Pte Ltd from 2009-2015 and was responsible for ensuring tax compliance, managing tax risks and optimizing tax position through proper tax planning and structuring initiatives. Ms Chew was the Regional Tax Controller of ICI Management (Singapore) Pte Ltd from 2000 to 2009. She held the position of Assistant Regional Tax Manager of BP Asia Pacific Pte Ltd from 1991 to 2000.',
+      'Ms Chew holds a Bachelor of Accountancy degree from the University of Singapore.',
+    ],
   },
 ];
 

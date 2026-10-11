@@ -20,9 +20,9 @@ const tiles: { label: string; title: string; body: string; to: string; art: ArtV
     art: 'bridge',
   },
   {
-    label: 'Leadership',
-    title: 'People behind the capital.',
-    body: 'Meet the team leading SICIM.',
+    label: 'The Team',
+    title: 'The Board',
+    body: 'Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng and Chew Seng Fang.',
     to: '/team',
     art: 'atrium',
   },

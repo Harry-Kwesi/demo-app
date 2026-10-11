@@ -112,7 +112,7 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
           {!q && (
             <p className="text-[14px] text-mute-deep">
               Popular:{' '}
-              {['Funds', 'Philosophy', 'Leadership'].map((t) => (
+              {['Funds', 'Philosophy', 'Team'].map((t) => (
                 <button key={t} type="button" onClick={() => setQ(t)} className="ml-2 font-semibold text-ink underline underline-offset-4">
                   {t}
                 </button>

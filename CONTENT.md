@@ -12,7 +12,8 @@ appear on the site with a dashed "placeholder" tag. To turn those tags off once 
 | Home: "Our Philosophy" hero and "Latest News" notice | Copied verbatim |
 | About Us: single paragraph (incorporated 1996; licence issued by MAS in 1996; asset classes) | Copied verbatim |
 | The Team: "The Board" — Boon Swan Foo, Goh Mui Hong, Martha Tan Hui Keng, Chew Seng Fang (full bios) | Copied verbatim |
-| Investment Philosophy, Funds, Contact Us | Pending screenshots |
+| Investment Philosophy: three paragraphs | Copied verbatim. Paragraph 2 is split sentence by sentence into the process steps; the step titles (Macroeconomic analysis, Fundamental analysis, Portfolio construction) and the "Indexing strategy" heading are short labels added for the design |
+| Funds, Contact Us | Pending screenshots |
 
 Note: the site writes "Capital Market Services Licence"; MAS's own term is "Capital Markets Services Licence".
 The About Us copy keeps the site's wording.

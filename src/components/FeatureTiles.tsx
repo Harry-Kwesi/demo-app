@@ -6,9 +6,9 @@ import type { ArtVariant } from '../data/site';
 
 const tiles: { label: string; title: string; body: string; to: string; art: ArtVariant }[] = [
   {
-    label: 'Philosophy',
-    title: 'We think in decades, not quarters.',
-    body: 'How diversification and fundamental analysis shape every portfolio.',
+    label: 'Investment Philosophy',
+    title: 'Our Philosophy',
+    body: 'We aim to deliver a consistent total return to investors through active portfolio management and assets growth.',
     to: '/philosophy',
     art: 'colonnade',
   },

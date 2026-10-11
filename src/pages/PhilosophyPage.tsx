@@ -1,62 +1,57 @@
+import { Link } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
-import Philosophy from '../components/Philosophy';
 import Approach from '../components/Approach';
-import Investments from '../components/Investments';
 import ContactCTA from '../components/ContactCTA';
 import Reveal from '../components/Reveal';
-import SectionHeading from '../components/SectionHeading';
-import { about } from '../data/site';
+import { philosophy } from '../data/site';
 import { useTitle } from '../hooks/useTitle';
 
 export default function PhilosophyPage() {
-  useTitle('Investment philosophy');
+  useTitle(philosophy.title);
+  const [opening, , indexing] = philosophy.paragraphs;
   return (
     <>
       <PageHeader
-        crumb="Investment philosophy"
-        title="We think in decades, not quarters."
-        intro={about.mandate}
+        crumb={philosophy.title}
+        title={philosophy.title}
         art="colonnade"
         seed={4}
         sections={[
-          { label: 'Portfolio construction', href: '#construction' },
-          { label: 'Principles', href: '#principles' },
+          { label: 'Overview', href: '#overview' },
           { label: 'Our approach', href: '#approach' },
-          { label: 'Asset classes', href: '#asset-classes' },
+          { label: 'Indexing strategy', href: '#indexing' },
         ]}
       />
 
-      <section id="construction" aria-labelledby="construction-heading" className="bg-white py-20 lg:py-28">
-        <div className="container-site">
-          <SectionHeading
-            id="construction-heading"
-            eyebrow="Portfolio construction"
-            title="Steady income and potential capital appreciation."
-          />
-          <div className="grid gap-10 border-t-2 border-ink pt-10 text-lg leading-relaxed text-mute-deep md:grid-cols-2">
-            <Reveal>
-              <h3 className="mb-4 text-title font-extrabold text-ink">Active, diversified portfolios</h3>
-              <p>
-                We seek investments across asset classes — including equity, preference shares, debt, options and warrants — around the world, diversifying across industries,
-                currencies and maturities to manage investment risk.
-              </p>
-            </Reveal>
-            <Reveal delay={100}>
-              <h3 className="mb-4 text-title font-extrabold text-ink">A passive option</h3>
-              <p>
-                For investors who prefer a low-cost, passive approach, SICIM offers a fund that follows an indexing strategy, seeking to mirror as closely as possible, before expenses,
-                the performance of the index it is designed to track.
-              </p>
-            </Reveal>
-          </div>
+      <section id="overview" aria-label="Overview" className="bg-white pt-16 lg:pt-24">
+        <div className="container-site grid lg:grid-cols-12">
+          <Reveal className="lg:col-span-8">
+            <p className="border-l-4 border-ink pl-6 text-[clamp(20px,1.9vw,28px)] font-semibold leading-[1.5] lg:pl-10">{opening}</p>
+          </Reveal>
         </div>
       </section>
 
-      <div id="principles">
-        <Philosophy showLink={false} />
-      </div>
-      <Approach />
-      <Investments />
+      <Approach variant="list" />
+
+      <section id="indexing" aria-labelledby="indexing-heading" className="bg-surface py-16 lg:py-24">
+        <div className="container-site grid gap-10 lg:grid-cols-12 lg:items-center">
+          <Reveal className="lg:col-span-4">
+            <h2 id="indexing-heading" className="text-display font-extrabold">
+              Indexing strategy
+            </h2>
+          </Reveal>
+          <Reveal delay={80} className="border-t-4 border-ink bg-white p-8 lg:col-span-8 lg:p-10">
+            <p className="text-lg leading-relaxed text-mute-deep">{indexing}</p>
+            <Link to="/funds" className="group mt-8 inline-flex items-center gap-2 font-bold">
+              <span className="u-link">Funds</span>
+              <span className="arrow" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
       <ContactCTA />
     </>
   );

@@ -88,82 +88,53 @@ export const about = {
     { label: 'Licensed', value: '1996', detail: 'Capital Market Services Licence for Fund Management issued by the Monetary Authority of Singapore' },
   ],
   assetClasses: ['Public and private equities', 'Fixed income instruments', 'Loans', 'Derivatives', 'Structured finance', 'Alternative investments'],
-  mandate:
-    'SICIM aims to deliver a consistent total return to investors through active portfolio management and asset growth.',
 };
 
-export type Principle = {
-  index: string;
-  title: string;
-  body: string;
-  art: ArtVariant;
+/** Investment Philosophy page, verbatim from sicim.com.sg. */
+export const philosophy = {
+  title: 'Investment Philosophy',
+  paragraphs: [
+    'Singapore Consortium Investment Management Limited (“SICIM”) aims to deliver a consistent total return to investors through active portfolio management and assets growth. To build a portfolio of assets that will generate steady income and potential capital appreciation, it seeks to identify investments in various asset classes including but not limited to equity, preference shares, debt, options and warrants, across the world, with an eye to diversify across industries, currencies and maturities to manage the investment risks.',
+    'To assist in the construction of such a diversified global portfolio, SICIM adopts a variety of investment strategies to achieve an optimal asset allocation. An analysis of the macroeconomic fundamentals of major developed and emerging markets to identify the points of the economic cycle each country or region is in allows SICIM to target the appropriate sectors and industries expected to benefit from their positioning in the economic cycle. Within each sector and industry, the selection of suitable companies for investments is grounded primarily in fundamental analysis, both qualitatively and quantitatively. Once the candidates have been identified, a mix of securities issued by the companies are then targeted to obtain the optimal risk-adjusted returns for the portfolio.',
+    'However, for investors that believe in taking low cost passive approach to investing in the market, SICIM offers a fund, using an Indexing strategy. Such fund seeks to mimic as closely as possible, before expenses, the performance of an Index the fund is designed to follow. The types & weights of securities in the portfolio are designed to broadly follow the respective weightings in the index constituents.',
+  ],
 };
-
-export const principles: Principle[] = [
-  {
-    index: '01',
-    title: 'Long-term thinking',
-    body: 'We build portfolios designed to generate steady income and potential capital appreciation over time, rather than chase short-term movements.',
-    art: 'horizon',
-  },
-  {
-    index: '02',
-    title: 'Disciplined capital',
-    body: 'Diversification across industries, currencies and maturities is how we manage investment risk. Every allocation is grounded in fundamental analysis — qualitative and quantitative.',
-    art: 'facade',
-  },
-  {
-    index: '03',
-    title: 'Active ownership',
-    body: 'We manage portfolios actively, adapting allocation as macroeconomic conditions evolve across developed and emerging markets.',
-    art: 'colonnade',
-  },
-  {
-    index: '04',
-    title: 'Enduring value',
-    body: 'Our objective is constant: a consistent total return to investors through active portfolio management and asset growth.',
-    art: 'skyline',
-  },
-];
 
 export type Stage = {
   index: string;
   title: string;
-  lead: string;
   body: string;
   art: ArtVariant;
 };
 
-export const stages: Stage[] = [
-  {
-    index: '01',
-    title: 'Identify',
-    lead: 'Reading the cycle.',
-    body: 'We analyse the macroeconomic fundamentals of major developed and emerging markets to understand where each country or region sits in the economic cycle.',
-    art: 'horizon',
-  },
-  {
-    index: '02',
-    title: 'Invest',
-    lead: 'Selecting with rigour.',
-    body: 'We target the sectors and industries expected to benefit from that positioning, then select companies within them on the strength of fundamental analysis.',
-    art: 'facade',
-  },
-  {
-    index: '03',
-    title: 'Build',
-    lead: 'Constructing the portfolio.',
-    body: 'We combine a variety of investment strategies across equity, preference shares, debt, options and warrants to reach an optimal, globally diversified asset allocation.',
-    art: 'colonnade',
-  },
-  {
-    index: '04',
-    title: 'Grow',
-    lead: 'Compounding over time.',
-    body: 'Diversified across industries, currencies and maturities, the portfolio is managed actively for steady income, potential capital appreciation and consistent total return.',
-    art: 'skyline',
-  },
-];
+/**
+ * The second philosophy paragraph, split sentence by sentence into the steps
+ * of the process module. Step titles are short labels; the body text is verbatim.
+ */
+export const process = {
+  intro:
+    'To assist in the construction of such a diversified global portfolio, SICIM adopts a variety of investment strategies to achieve an optimal asset allocation.',
+  steps: [
+    {
+      index: '01',
+      title: 'Macroeconomic analysis',
+      body: 'An analysis of the macroeconomic fundamentals of major developed and emerging markets to identify the points of the economic cycle each country or region is in allows SICIM to target the appropriate sectors and industries expected to benefit from their positioning in the economic cycle.',
+      art: 'horizon',
+    },
+    {
+      index: '02',
+      title: 'Fundamental analysis',
+      body: 'Within each sector and industry, the selection of suitable companies for investments is grounded primarily in fundamental analysis, both qualitatively and quantitatively.',
+      art: 'facade',
+    },
+    {
+      index: '03',
+      title: 'Portfolio construction',
+      body: 'Once the candidates have been identified, a mix of securities issued by the companies are then targeted to obtain the optimal risk-adjusted returns for the portfolio.',
+      art: 'colonnade',
+    },
+  ] as Stage[],
+};
 
 export type AssetClass = {
   index: string;
@@ -349,12 +320,12 @@ export const media: Record<string, { src?: string; alt: string; art: ArtVariant 
 export const searchIndex = [
   { title: 'About SICIM', to: '/about', text: 'overview company singapore 1996 fund manager licence MAS clients' },
   { title: 'Corporate information', to: '/about#corporate', text: 'registration licence regulator monetary authority office address' },
-  { title: 'Investment philosophy', to: '/philosophy', text: 'philosophy diversification total return macroeconomic cycle fundamental analysis' },
+  { title: 'Investment Philosophy', to: '/philosophy', text: 'philosophy diversification total return macroeconomic cycle fundamental analysis indexing' },
   { title: 'Our approach', to: '/philosophy#approach', text: 'identify invest build grow process' },
   { title: 'Asset classes', to: '/funds#asset-classes', text: 'equities fixed income alternatives derivatives loans structured finance' },
   { title: 'Global Investments Limited', to: '/funds#global-investments-limited', text: 'fund mutual SGX listed' },
   { title: 'Singapore Index Fund', to: '/funds#singapore-index-fund', text: 'index passive fund SGX' },
-  { title: 'Leadership', to: '/team', text: 'team chairman chief executive directors' },
+  { title: 'The Team', to: '/team', text: 'team board chairman chief executive directors boon goh tan chew' },
   { title: 'Insights', to: '/insights', text: 'commentary announcements reports news' },
   { title: 'Contact us', to: '/contact', text: 'contact phone email address enquiry' },
   { title: 'Privacy, legal & disclosures', to: '/legal', text: 'privacy legal disclosures terms' },

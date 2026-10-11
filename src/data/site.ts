@@ -20,9 +20,8 @@ export const company = {
   regulator: 'Monetary Authority of Singapore',
   address: {
     lines: ['250 Tanjong Pagar Road', '#09-01 St. Andrew’s Centre', 'Singapore 088541'],
-    // Listed in public directories; SICIM has filed a change of registered
-    // address with SGX, so confirm this is current before launch.
-    verified: false,
+    // Confirmed by the SIF prospectus registered with MAS on 11 September 2026.
+    verified: true,
   },
   phone: { display: '+65 6908 4866', href: 'tel:+6569084866', verified: false },
   email: { display: 'enquiries@[to-be-confirmed]', href: '', verified: false },
@@ -191,13 +190,13 @@ export const fundsPage = {
   },
   documents: {
     title: 'Fund Documents',
-    /** Set `href` to each PDF (e.g. '/documents/sif-prospectus.pdf' in /public) once supplied. */
+    /** PDFs live in public/documents; replace a file there to publish a new version. */
     items: [
-      { label: 'Prospectus', href: '' },
-      { label: 'Product Highlight Sheet', href: '' },
-      { label: 'Annual Report', href: '' },
-      { label: 'Semi Annual Report', href: '' },
-      { label: 'Application / Realisation Form', href: '' },
+      { label: 'Prospectus', href: '/documents/sif-prospectus.pdf', size: '1.0 MB' },
+      { label: 'Product Highlight Sheet', href: '/documents/sif-product-highlights-sheet.pdf', size: '205 KB' },
+      { label: 'Annual Report', href: '/documents/sif-annual-report.pdf', size: '1.6 MB' },
+      { label: 'Semi Annual Report', href: '/documents/sif-semi-annual-report.pdf', size: '1.3 MB' },
+      { label: 'Application / Realisation Form', href: '/documents/sif-application-realisation-form.pdf', size: '199 KB' },
     ],
   },
 };

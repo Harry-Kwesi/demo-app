@@ -32,14 +32,18 @@ The About Us copy keeps the site's wording.
 
 ## Needs confirmation (shown with placeholder tags)
 
-- **Office address**: 250 Tanjong Pagar Road, #09-01 St. Andrew's Centre, Singapore 088541. SICIM has filed a change of registered address with SGX, so check this is the current address.
+- **Office address**: confirmed as 250 Tanjong Pagar Road, #09-01 St Andrew's Centre, Singapore 088541 by the SIF prospectus.
+- **Director name**: the prospectus lists "Tan Mui Hong" as a director of the Managers. The website uses "Goh Mui Hong".
+  Confirm which form SICIM wants on the site.
 - **Phone**: +65 6908 4866 (from directories).
 - **Email**: not found. The site shows a placeholder.
 - **Funds page links**: the live site's link targets were not visible in the screenshots. Current guesses are in
   `fundLinks` (`src/data/site.ts`): GIL "Click here" → globalinvestmentslimited.com, "SGX" → sgx.com, and the
   NAV "click here" → SGX company announcements. Confirm each one, then set `verified: true`.
-- **Fund documents**: the Prospectus, Product Highlight Sheet, Annual Report, Semi Annual Report and Application /
-  Realisation Form PDFs are needed. Put them in `public/documents/` and set each `href`.
+- **Fund documents**: supplied and linked from `public/documents/`. They are the SIF Prospectus (registered with MAS
+  11 Sep 2026), Product Highlights Sheet, Annual Report (FY ended 30 Jun 2026), Semi Annual Report (half year ended
+  31 Dec 2025) and Application / Realisation Form (approved 10 Sep 2026). To publish a new version, replace the file
+  with the same name.
 - **Team portraits**: none supplied yet; placeholders show initials.
 - **Key figures**: only "1996" is verified. Markets, capital (AUM) and number of investments are deliberately left as "—".
 - **Insights**: no articles were available. All four rows are placeholders.

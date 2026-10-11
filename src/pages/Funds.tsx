@@ -147,7 +147,13 @@ export default function Funds() {
                   <a href={d.href} target="_blank" rel="noopener noreferrer" className="group flex h-full items-center justify-between gap-4 border-t-2 border-ink bg-white p-6 transition-colors hover:bg-ink hover:text-white">
                     <span className="flex items-center gap-4">
                       <DocIcon />
-                      <span className="text-title font-extrabold">{d.label}</span>
+                      <span>
+                        <span className="block text-title font-extrabold">{d.label}</span>
+                        <span className="mt-1 block text-[13px] font-semibold text-mute-deep group-hover:text-mute">
+                          PDF · {d.size}
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </span>
+                      </span>
                     </span>
                     <span className="arrow" aria-hidden="true">
                       ↓
